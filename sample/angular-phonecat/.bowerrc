@@ -1,5 +1,5 @@
 {
-  "directory": "bower_components",
+  "directory": "app/bower_components",
   "analytics": false,
   "timeout": 120000,
   "registry": "http://home.nabla.mobi:5678",

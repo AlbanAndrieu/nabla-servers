@@ -59,7 +59,7 @@
                                                     <include>.tmp/</include>
                                                     <include>node_modules/</include>
                                                     <include>node/</include>
-                                                    <include>bower_components/</include>
+                                                    <include>app/bower_components/</include>
                                                     <include>build/</include>
                                                     <include>docs/</include>
                                                     <include>dist/</include>
