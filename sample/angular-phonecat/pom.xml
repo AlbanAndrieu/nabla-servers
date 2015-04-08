@@ -11,11 +11,11 @@
 	<artifactId>com.nabla.project.servers.sample.javascript</artifactId>
 	<name>angular-phonecat</name>
 	<description>Angular phonecat</description>
-	
+
 	<properties>
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
 		<!--<sonar.sources>app/js,app/css,app/partials,test</sonar.sources>  TODO removed workaround -->
-		<sonar.exclusions>node/**,node_modules/**,app/bower_components/**</sonar.exclusions> 
+		<sonar.exclusions>node/**,node_modules/**,app/bower_components/**</sonar.exclusions>
 		<!--<sonar.language>js</sonar.language>--> <!-- NOT NEEDED anymore for Sonar 4.3 -->
 		<sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
 		<sonar.javascript.lcov.reportPath>${project.build.directory}/coverage/lcov.info</sonar.javascript.lcov.reportPath>
@@ -24,7 +24,7 @@
 	<build>
 		<sourceDirectory>app</sourceDirectory>
         <testSourceDirectory>test</testSourceDirectory>
-        		
+
 		<resources>
 			<!-- enable filtering on version.properties to generate build info -->
 			<resource>
@@ -46,7 +46,34 @@
 		</resources>
 
 		<plugins>
-		
+            <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven.clean.plugin.version}</version>
+                    <configuration>
+                            <filesets>
+                                    <fileset>
+                                            <directory>${project.basedir}</directory>
+                                            <includes>
+                                                    <include>.bower/</include>
+                                                    <include>.tmp/</include>
+                                                    <include>node_modules/</include>
+                                                    <include>node/</include>
+                                                    <include>bower_components/</include>
+                                                    <include>build/</include>
+                                                    <include>docs/</include>
+                                                    <include>dist/</include>
+                                            </includes>
+                                            <excludes>
+                                                    <!-- Allow mvn clean install > install.log -->
+                                                    <exclude>**/build.log</exclude>
+                                                    <exclude>**/install.log</exclude>
+                                            </excludes>
+                                            <followSymlinks>false</followSymlinks>
+                                    </fileset>
+                            </filesets>
+                    </configuration>
+            </plugin>
 			<!-- Build UI -->
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
@@ -57,7 +84,7 @@
 					<workingDirectory>.</workingDirectory>
 				</configuration>
 				-->
-				
+
 				<executions>
 
 					<execution>
@@ -112,7 +139,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>${maven.antrun.plugin.version}</version>
-				<executions>	
+				<executions>
                    <execution>
                         <id>lcov</id>
                         <phase>test</phase>
@@ -147,11 +174,11 @@
                                     <fileset dir="target">
                                         <include name="lcov.info" />
                                     </fileset>
-                                </replaceregexp>      
+                                </replaceregexp>
                             </target>
                         </configuration>
-                    </execution>					            
-				</executions>	
+                    </execution>
+				</executions>
 				<dependencies>
 					<dependency>
 						<groupId>org.apache.ant</groupId>
@@ -163,11 +190,11 @@
 						<artifactId>ant</artifactId>
 						<version>${ant.version}</version>
 					</dependency>
-				</dependencies>				
-			</plugin>	
+				</dependencies>
+			</plugin>
 		</plugins>
 	</build>
-	
+
 	<dependencies>
 		<!-- test dependencies -->
 		<dependency>
@@ -181,5 +208,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	  
+
 </project>

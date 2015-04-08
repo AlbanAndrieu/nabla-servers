@@ -19,4 +19,4 @@ dist
 .sass-cache
 *.log
 /docs/
-angular-phonecat-snapshots
+src/main/gwt-unitCache/
