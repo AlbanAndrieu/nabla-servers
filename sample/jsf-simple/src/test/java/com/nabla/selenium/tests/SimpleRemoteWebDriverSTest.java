@@ -3,7 +3,6 @@ package com.nabla.selenium.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.io.File;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -16,17 +15,12 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxBinary;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.thoughtworks.selenium.DefaultSelenium;
 //import com.saucelabs.common.SauceOnDemandAuthentication;
 //import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 //import com.saucelabs.junit.SauceOnDemandTestWatcher;
@@ -155,6 +149,10 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
         // FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
 
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("no-sandbox");
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        
         capabilities = DesiredCapabilities.chrome();
         // capabilities = DesiredCapabilities.firefox();
         // capabilities.setCapability(FirefoxDriver.PROFILE, profile);
