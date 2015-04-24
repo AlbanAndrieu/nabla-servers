@@ -93,9 +93,9 @@ public class SimpleWebDriverSTest
         ChromeOptions options = new ChromeOptions();
         options.addArguments("no-sandbox");
 
+        CAPABILITIES = DesiredCapabilities.chrome();
         CAPABILITIES.setCapability(ChromeOptions.CAPABILITY, options);
 
-        // capabilities = DesiredCapabilities.chrome();
         CAPABILITIES.setJavascriptEnabled(true);
 
         DRIVER = new ChromeDriver(CAPABILITIES);

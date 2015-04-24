@@ -29,15 +29,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProvider */
 {
 
-    private WebDriver                  driver;
-    private String                     baseUrl            = SimpleWebDriverSTest.DEFAULT_URL;
-    private String                     chromeDriver       = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
-    private String                     firefoxBin         = SimpleWebDriverSTest.DEFAULT_FIREFOXBIN;
+    private static WebDriver           DRIVER;
+    private static String              BASE_URL           = SimpleWebDriverSTest.DEFAULT_URL;
+    private static String              CHROME_DRIVER      = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
+    private static String              FIREFOX_BIN        = SimpleWebDriverSTest.DEFAULT_FIREFOXBIN;
     private boolean                    acceptNextAlert    = true;
     private StringBuffer               verificationErrors = new StringBuffer();
     // private DefaultSelenium selenium;
 
-    private static DesiredCapabilities capabilities;
+    private static DesiredCapabilities CAPABILITIES;
 
     // private static Platform ANDROID, LINUX, MAC, UNIX, VISTA, WINDOWS, XP, platformValue;
     // private String browser, browserVersion, platform, sessionId = "";
@@ -114,34 +114,34 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
     public void setUp() throws Exception
     {
 
-        baseUrl = System.getProperty("webdriver.base.url");
+        BASE_URL = System.getProperty("webdriver.base.url");
 
-        if (null == baseUrl)
+        if (null == BASE_URL)
         {
             System.out.println("Use default webdriver.base.url");
-            baseUrl = SimpleWebDriverSTest.DEFAULT_URL;
-            System.setProperty("webdriver.base.url", baseUrl);
+            BASE_URL = SimpleWebDriverSTest.DEFAULT_URL;
+            System.setProperty("webdriver.base.url", BASE_URL);
         }
-        System.out.println("webdriver.base.url is : " + baseUrl + "\n");
+        System.out.println("webdriver.base.url is : " + BASE_URL + "\n");
 
-        chromeDriver = System.getProperty("webdriver.chrome.driver");
-        if (null == chromeDriver)
+        CHROME_DRIVER = System.getProperty("webdriver.chrome.driver");
+        if (null == CHROME_DRIVER)
         {
             System.out.println("Use default webdriver.base.url");
-            chromeDriver = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
-            System.setProperty("webdriver.chrome.driver", chromeDriver);
+            CHROME_DRIVER = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
+            System.setProperty("webdriver.chrome.driver", CHROME_DRIVER);
         }
-        System.out.println("webdriver.chrome.driver is : " + chromeDriver + "\n");
+        System.out.println("webdriver.chrome.driver is : " + CHROME_DRIVER + "\n");
 
         // System.setProperty("webdriver.safari.noinstall", "true");
-        firefoxBin = System.getProperty("webdriver.firefox.bin");
-        if (null == firefoxBin)
+        FIREFOX_BIN = System.getProperty("webdriver.firefox.bin");
+        if (null == FIREFOX_BIN)
         {
             System.out.println("Use default webdriver.firefox.bin");
-            firefoxBin = SimpleWebDriverSTest.DEFAULT_FIREFOXBIN;
-            System.setProperty("webdriver.firefox.bin", firefoxBin);
+            FIREFOX_BIN = SimpleWebDriverSTest.DEFAULT_FIREFOXBIN;
+            System.setProperty("webdriver.firefox.bin", FIREFOX_BIN);
         }
-        System.out.println("webdriver.firefox.bin is : " + firefoxBin + "\n");
+        System.out.println("webdriver.firefox.bin is : " + FIREFOX_BIN + "\n");
         // System.setProperty("webdriver.firefox.bin", "C:\\Program Files\\Mozilla Firefox\\firefox");
 
         // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
@@ -151,12 +151,14 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("no-sandbox");
-        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-        
-        capabilities = DesiredCapabilities.chrome();
+
+        CAPABILITIES = DesiredCapabilities.chrome();
+        CAPABILITIES.setCapability(ChromeOptions.CAPABILITY, options);
+
+        CAPABILITIES = DesiredCapabilities.chrome();
         // capabilities = DesiredCapabilities.firefox();
         // capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-        capabilities.setJavascriptEnabled(true);
+        CAPABILITIES.setJavascriptEnabled(true);
 
         // FirefoxBinary ffb = new FirefoxBinary(new File(firefoxBin));
 
@@ -184,7 +186,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
         // capabilities = new DesiredCapabilities(browser, browserVersion, setPlatformCapabilities(platform));
         // capabilities.setCapability("name", this.getClass().getName() + "." + testName.getMethodName());
-        driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabilities);
+        DRIVER = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), CAPABILITIES);
         /*
          * this.driver = new RemoteWebDriver(
          * new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
@@ -208,9 +210,9 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         // WebDriver augmentedDriver = new Augmenter().augment(driver);
         // File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        DRIVER.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         // driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+        DRIVER.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         // driver.manage().window().setSize(new Dimension(1920, 1080));
         // selenium = new WebDriverBackedSelenium(driver, baseUrl);
 
@@ -229,15 +231,15 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
     @Test
     public void testSimpleS() throws Exception
     {
-        driver.get(baseUrl + "/welcome/hello.xhtml");
+        DRIVER.get(BASE_URL + "/welcome/hello.xhtml");
         // selenium.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
-        assertEquals("JSF 2.0 Hello World Example - hello.xhtml", driver.findElement(By.cssSelector("h3")).getText());
-        driver.findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID)).clear();
-        driver.findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID)).sendKeys("Test me !!!");
+        assertEquals("JSF 2.0 Hello World Example - hello.xhtml", DRIVER.findElement(By.cssSelector("h3")).getText());
+        DRIVER.findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID)).clear();
+        DRIVER.findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID)).sendKeys("Test me !!!");
 
         // wait for the application to get fully loaded
-        WebElement findOwnerLink = (new WebDriverWait(driver, 5)).until(new ExpectedCondition<WebElement>()
+        WebElement findOwnerLink = (new WebDriverWait(DRIVER, 5)).until(new ExpectedCondition<WebElement>()
         {
             public WebElement apply(WebDriver d)
             {
@@ -248,23 +250,23 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
         findOwnerLink.click();
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(DRIVER, 10);
         wait.until(ExpectedConditions.elementToBeClickable(By.name(SimpleWebDriverSTest.SUBMIT_BUTTON_ID)));
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        DRIVER.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        driver.findElement(By.name(SimpleWebDriverSTest.SUBMIT_BUTTON_ID)).click();
+        DRIVER.findElement(By.name(SimpleWebDriverSTest.SUBMIT_BUTTON_ID)).click();
 
-        assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", driver.findElement(By.cssSelector("h3")).getText());
-        assertEquals("Welcome Test me !!!", driver.findElement(By.cssSelector("h4")).getText());
+        assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", DRIVER.findElement(By.cssSelector("h3")).getText());
+        assertEquals("Welcome Test me !!!", DRIVER.findElement(By.cssSelector("h4")).getText());
     }
 
     @After
     public void tearDown() throws Exception
     {
         // stopSeleniumServer(server, selenium);
-        if (null != driver)
+        if (null != DRIVER)
         {
-            driver.quit();
+            DRIVER.quit();
         }
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString))
@@ -284,7 +286,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
     {
         try
         {
-            driver.findElement(by);
+            DRIVER.findElement(by);
             return true;
         } catch (NoSuchElementException e)
         {
@@ -296,7 +298,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
     {
         try
         {
-            driver.switchTo().alert();
+            DRIVER.switchTo().alert();
             return true;
         } catch (NoAlertPresentException e)
         {
@@ -308,7 +310,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
     {
         try
         {
-            Alert alert = driver.switchTo().alert();
+            Alert alert = DRIVER.switchTo().alert();
             String alertText = alert.getText();
             if (acceptNextAlert)
             {
