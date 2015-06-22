@@ -25,11 +25,17 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
 public class SimpleWebDriverSTest
 {
+	
+    private static final transient Logger LOGGER = LoggerFactory.getLogger(SimpleWebDriverSTest.class);
+    
     public static final String         FORM_ID              = "hello-form";
     public static final String         SUBMIT_BUTTON_ID     = FORM_ID + ":submit-text";
     public static final String         INPUT_TEXT_ID        = FORM_ID + ":input-text";
@@ -52,6 +58,7 @@ public class SimpleWebDriverSTest
 
     private static DesiredCapabilities CAPABILITIES;
 
+    private static long DEPLOY_WAIT = 10;
     // public static SeleniumServer server;
 
     @BeforeClass
@@ -114,7 +121,8 @@ public class SimpleWebDriverSTest
         // driver.manage().window().setSize(new Dimension(1920, 1080));
         SELENIUM = new WebDriverBackedSelenium(DRIVER, BASE_URL);
 
-        Thread.sleep(10000); // 10 s
+        SimpleWebDriverSTest.LOGGER.info("Waiting for deploy to be finished before starting test (in seconds) : {}", DEPLOY_WAIT);
+        TimeUnit.SECONDS.sleep(DEPLOY_WAIT);
         // screenshot.
     }
 

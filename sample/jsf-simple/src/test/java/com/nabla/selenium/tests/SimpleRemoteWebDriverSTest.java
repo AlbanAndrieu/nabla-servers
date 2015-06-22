@@ -21,6 +21,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 //import com.saucelabs.common.SauceOnDemandAuthentication;
 //import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 //import com.saucelabs.junit.SauceOnDemandTestWatcher;
@@ -29,6 +31,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProvider */
 {
 
+	private static final transient Logger LOGGER = LoggerFactory.getLogger(SimpleRemoteWebDriverSTest.class);
+	
     private static WebDriver           DRIVER;
     private static String              BASE_URL           = SimpleWebDriverSTest.DEFAULT_URL;
     private static String              CHROME_DRIVER      = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
@@ -39,6 +43,8 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
     private static DesiredCapabilities CAPABILITIES;
 
+    private static long DEPLOY_WAIT = 10;
+    
     // private static Platform ANDROID, LINUX, MAC, UNIX, VISTA, WINDOWS, XP, platformValue;
     // private String browser, browserVersion, platform, sessionId = "";
 
@@ -216,6 +222,8 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         // driver.manage().window().setSize(new Dimension(1920, 1080));
         // selenium = new WebDriverBackedSelenium(driver, baseUrl);
 
+        SimpleRemoteWebDriverSTest.LOGGER.info("Waiting for deploy to be finished before starting test (in seconds) : {}", DEPLOY_WAIT);
+        TimeUnit.SECONDS.sleep(DEPLOY_WAIT);
         // screenshot.
     }
 
