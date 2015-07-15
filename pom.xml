@@ -804,6 +804,7 @@
 								<containerId>${cargo.container}</containerId>
 							</container>
 						</configuration>
+						<!--
 						<executions>
 							<execution>
 								<id>start-container</id>
@@ -820,6 +821,7 @@
 								</goals>
 							</execution>
 						</executions>
+						-->
 					</plugin>
 				</plugins>
 			</build>
@@ -869,6 +871,7 @@
 								</artifactInstaller>
 							</container>
 						</configuration>
+						<!--
 						<executions>
 							<execution>
 								<id>start-container</id>
@@ -885,6 +888,7 @@
 								</goals>
 							</execution>
 						</executions>
+						-->
 					</plugin>
 				</plugins>
 			</build>
@@ -934,6 +938,7 @@
 								</artifactInstaller>
 							</container>
 						</configuration>
+						<!--
 						<executions>
 							<execution>
 								<id>start-container</id>
@@ -950,6 +955,7 @@
 								</goals>
 							</execution>
 						</executions>
+						-->
 					</plugin>
 				</plugins>
 			</build>
@@ -999,6 +1005,7 @@
 								</artifactInstaller>
 							</container>
 						</configuration>
+						<!--
 						<executions>
 							<execution>
 								<id>start-container</id>
@@ -1022,6 +1029,7 @@
 								</goals>
 							</execution>
 						</executions>
+						-->
 					</plugin>
 				</plugins>
 			</build>
