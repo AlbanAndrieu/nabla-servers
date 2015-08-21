@@ -32,7 +32,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 {
 
 	private static final transient Logger LOGGER = LoggerFactory.getLogger(SimpleRemoteWebDriverSTest.class);
-	
+
     private static WebDriver           DRIVER;
     private static String              BASE_URL           = SimpleWebDriverSTest.DEFAULT_URL;
     private static String              CHROME_DRIVER      = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
@@ -43,8 +43,8 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
     private static DesiredCapabilities CAPABILITIES;
 
-    private static long DEPLOY_WAIT = 10;
-    
+    private static long DEPLOY_WAIT = 300;
+
     // private static Platform ANDROID, LINUX, MAC, UNIX, VISTA, WINDOWS, XP, platformValue;
     // private String browser, browserVersion, platform, sessionId = "";
 
@@ -218,7 +218,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
         DRIVER.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         // driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-        DRIVER.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+        DRIVER.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
         // driver.manage().window().setSize(new Dimension(1920, 1080));
         // selenium = new WebDriverBackedSelenium(driver, baseUrl);
 
