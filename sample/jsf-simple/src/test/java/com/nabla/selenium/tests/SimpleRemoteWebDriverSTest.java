@@ -38,7 +38,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
     private static String              CHROME_DRIVER      = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
     private static String              FIREFOX_BIN        = SimpleWebDriverSTest.DEFAULT_FIREFOXBIN;
     private boolean                    acceptNextAlert    = true;
-    private StringBuffer               verificationErrors = new StringBuffer();
+    private static StringBuffer        VERIFICATION_ERRORS = new StringBuffer();
     // private DefaultSelenium selenium;
 
     private static DesiredCapabilities CAPABILITIES;
@@ -117,7 +117,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
      */
 
     @BeforeClass
-    public void setUp() throws Exception
+    public static void setUp() throws Exception
     {
 
         BASE_URL = System.getProperty("webdriver.base.url");
@@ -269,14 +269,14 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
     }
 
     @AfterClass
-    public void tearDown() throws Exception
+    public static void tearDown() throws Exception
     {
         // stopSeleniumServer(server, selenium);
         if (null != DRIVER)
         {
             DRIVER.quit();
         }
-        String verificationErrorString = verificationErrors.toString();
+        String verificationErrorString = VERIFICATION_ERRORS.toString();
         if (!"".equals(verificationErrorString))
         {
             fail(verificationErrorString);
