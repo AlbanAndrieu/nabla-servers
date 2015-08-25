@@ -6,8 +6,8 @@ import static org.junit.Assert.fail;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -116,7 +116,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
      * }
      */
 
-    @Before
+    @BeforeClass
     public void setUp() throws Exception
     {
 
@@ -135,8 +135,8 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         {
             System.out.println("Use default webdriver.base.url");
             CHROME_DRIVER = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
-            System.setProperty("webdriver.chrome.driver", CHROME_DRIVER);
         }
+        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER);        
         System.out.println("webdriver.chrome.driver is : " + CHROME_DRIVER + "\n");
 
         // System.setProperty("webdriver.safari.noinstall", "true");
@@ -145,8 +145,8 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         {
             System.out.println("Use default webdriver.firefox.bin");
             FIREFOX_BIN = SimpleWebDriverSTest.DEFAULT_FIREFOXBIN;
-            System.setProperty("webdriver.firefox.bin", FIREFOX_BIN);
         }
+        System.setProperty("webdriver.firefox.bin", FIREFOX_BIN);        
         System.out.println("webdriver.firefox.bin is : " + FIREFOX_BIN + "\n");
         // System.setProperty("webdriver.firefox.bin", "C:\\Program Files\\Mozilla Firefox\\firefox");
 
@@ -268,7 +268,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         assertEquals("Welcome Test me !!!", DRIVER.findElement(By.cssSelector("h4")).getText());
     }
 
-    @After
+    @AfterClass
     public void tearDown() throws Exception
     {
         // stopSeleniumServer(server, selenium);

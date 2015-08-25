@@ -54,7 +54,7 @@ public class SimpleWebDriverSTest
     private static String              FIREFOX_BIN          = DEFAULT_FIREFOXBIN;
     private boolean                    acceptNextAlert      = true;
     private static StringBuffer        _VERIFICATION_ERRORS = new StringBuffer();
-    private static DefaultSelenium     SELENIUM;
+    //private static DefaultSelenium     SELENIUM;
 
     private static DesiredCapabilities CAPABILITIES;
 
@@ -80,8 +80,8 @@ public class SimpleWebDriverSTest
         {
             System.out.println("Use default webdriver.base.url");
             CHROME_DRIVER = DEFAULT_CHROMEDRIVER;
-            System.setProperty("webdriver.chrome.driver", CHROME_DRIVER);
         }
+        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER);
         System.out.println("webdriver.chrome.driver is : " + CHROME_DRIVER + "\n");
 
         FIREFOX_BIN = System.getProperty("webdriver.firefox.bin");
@@ -89,8 +89,8 @@ public class SimpleWebDriverSTest
         {
             System.out.println("Use default webdriver.firefox.bin");
             FIREFOX_BIN = DEFAULT_FIREFOXBIN;
-            System.setProperty("webdriver.firefox.bin", FIREFOX_BIN);
         }
+        System.setProperty("webdriver.firefox.bin", FIREFOX_BIN);        
         System.out.println("webdriver.firefox.bin is : " + FIREFOX_BIN + "\n");
         // ProfilesIni allProfiles = new ProfilesIni();
         // FirefoxProfile profile = allProfiles.getProfile("Selenium");
@@ -119,7 +119,7 @@ public class SimpleWebDriverSTest
         // driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         DRIVER.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         // driver.manage().window().setSize(new Dimension(1920, 1080));
-        SELENIUM = new WebDriverBackedSelenium(DRIVER, BASE_URL);
+        //SELENIUM = new WebDriverBackedSelenium(DRIVER, BASE_URL);
 
         SimpleWebDriverSTest.LOGGER.info("Waiting for deploy to be finished before starting test (in seconds) : {}", DEPLOY_WAIT);
         TimeUnit.SECONDS.sleep(DEPLOY_WAIT);
@@ -139,7 +139,7 @@ public class SimpleWebDriverSTest
     public void testSimpleS() throws Exception
     {
         DRIVER.get(BASE_URL + "/welcome/hello.xhtml");
-        SELENIUM.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
+        //SELENIUM.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
         assertEquals("JSF 2.0 Hello World Example - hello.xhtml", DRIVER.findElement(By.cssSelector("h3")).getText());
         DRIVER.findElement(By.name(INPUT_TEXT_ID)).clear();
