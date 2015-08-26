@@ -613,6 +613,9 @@
 								-->
 								<systemProperties>
 									<jboss.server.log.threshold>INFO</jboss.server.log.threshold>
+									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
 								</systemProperties>
 							</container>
 						</configuration>
@@ -741,6 +744,11 @@
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
+								<systemProperties>
+									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
+								</systemProperties>
 							</container>
 						</configuration>
 						<!--
@@ -869,6 +877,11 @@
 									<artifactId>jetty-distribution</artifactId>
 									<version>${server.version}</version>
 								</artifactInstaller>
+								<systemProperties>
+									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
+								</systemProperties>
 							</container>
 						</configuration>
 						<!--
@@ -936,6 +949,11 @@
 									<artifactId>jetty-distribution</artifactId>
 									<version>${server.version}</version>
 								</artifactInstaller>
+								<systemProperties>
+									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
+								</systemProperties>
 							</container>
 						</configuration>
 						<!--
@@ -1003,6 +1021,11 @@
 									<artifactId>jetty-distribution</artifactId>
 									<version>${server.version}</version>
 								</artifactInstaller>
+								<systemProperties>
+									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
+								</systemProperties>
 							</container>
 						</configuration>
 						<executions>
@@ -1109,6 +1132,8 @@
 								<!--<home>${cargo.container.home}</home>-->
 								<systemProperties>
 									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
 								</systemProperties>
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
@@ -1226,6 +1251,8 @@
 								<!--<home>${cargo.container.home}</home>-->
 								<systemProperties>
 									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
 								</systemProperties>
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
@@ -1348,6 +1375,11 @@
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
 								-->
+								<systemProperties>
+									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
+								</systemProperties>
 							</container>
 						</configuration>
 						<executions>
@@ -1429,6 +1461,11 @@
 								<type>${cargo.container.type}</type>
 								<log>${project.build.directory}/cargo.log</log>
 								<logLevel>debug</logLevel>
+								<systemProperties>
+									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
+								</systemProperties>
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
