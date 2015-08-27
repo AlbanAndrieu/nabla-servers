@@ -1028,6 +1028,7 @@
 								</systemProperties>
 							</container>
 						</configuration>
+						<!--
 						<executions>
 							<execution>
 								<id>start-container</id>
@@ -1051,6 +1052,7 @@
 								</goals>
 							</execution>
 						</executions>
+						-->
 					</plugin>
 				</plugins>
 			</build>
@@ -1144,6 +1146,7 @@
 								<outputLocation>${project.build.directory}/tomcat-packaged</outputLocation>
 							</packager>
 						</configuration>
+						<!--
 						<executions>
 							<execution>
 								<id>start</id>
@@ -1161,6 +1164,7 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
+							-->
 							<!--
 							<execution>
 								<id>package</id>
@@ -1170,7 +1174,9 @@
 								</goals>
 							</execution>
 							-->
+						<!--
 						</executions>
+						-->
 					</plugin>
 				</plugins>
 			</build>
@@ -1264,6 +1270,7 @@
 								<outputLocation>${project.build.directory}/tomcat-packaged</outputLocation>
 							</packager>
 						</configuration>
+						<!--
 						<executions>
 							<execution>
 								<id>start</id>
@@ -1281,6 +1288,7 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
+							-->
 							<!--
 							<execution>
 								<id>package</id>
@@ -1290,7 +1298,9 @@
 								</goals>
 							</execution>
 							-->
+						<!--
 						</executions>
+						-->
 					</plugin>
 				</plugins>
 			</build>

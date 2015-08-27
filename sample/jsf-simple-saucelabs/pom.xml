@@ -18,11 +18,11 @@
 
 			<!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
 
-			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
-				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
-				of artifacts. We use this here so that we always get the correct versions 
-				of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can 
-				read this as the JBoss stack of the Java EE 6 APIs, with some extras tools 
+			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
+				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
+				of artifacts. We use this here so that we always get the correct versions
+				of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can
+				read this as the JBoss stack of the Java EE 6 APIs, with some extras tools
 				for your project, such as Arquillian for testing) -->
 			<dependency>
 				<groupId>org.jboss.bom</groupId>
@@ -36,10 +36,10 @@
 
 	<dependencies>
 
-		<!-- First declare the APIs we depend on and need for compilation. All 
+		<!-- First declare the APIs we depend on and need for compilation. All
 			of them are provided by JBoss AS 7 -->
 
-		<!-- Import the CDI API, we use provided scope as the API is included in 
+		<!-- Import the CDI API, we use provided scope as the API is included in
 			JBoss AS 7 -->
 		<!--
 		<dependency>
@@ -49,7 +49,7 @@
 		</dependency>
 		-->
 
-		<!-- Import the JPA API, we use provided scope as the API is included in 
+		<!-- Import the JPA API, we use provided scope as the API is included in
 			JBoss AS 7 -->
 		<!--
 		<dependency>
@@ -59,7 +59,7 @@
 		</dependency>
 		-->
 
-		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
+		<!-- Import the Common Annotations API (JSR-250), we use provided scope
 			as the API is included in JBoss AS 7 -->
 		<!--
 		<dependency>
@@ -69,7 +69,7 @@
 		</dependency>
 		-->
 
-		<!-- Import the JAX-RS API, we use provided scope as the API is included 
+		<!-- Import the JAX-RS API, we use provided scope as the API is included
 			in JBoss AS 7 -->
 		<!--
 		<dependency>
@@ -79,7 +79,7 @@
 		</dependency>
 		-->
 
-		<!-- Import the JPA API, we use provided scope as the API is included in 
+		<!-- Import the JPA API, we use provided scope as the API is included in
 			JBoss AS 7 -->
 		<!--
 		<dependency>
@@ -89,7 +89,7 @@
 		</dependency>
 		-->
 
-		<!-- Import the EJB API, we use provided scope as the API is included in 
+		<!-- Import the EJB API, we use provided scope as the API is included in
 			JBoss AS 7 -->
 		<!--
 		<dependency>
@@ -99,23 +99,23 @@
 		</dependency>
 		-->
 
-		<!-- Import the Bean Validation API, which is used both on the server and 
+		<!-- Import the Bean Validation API, which is used both on the server and
 			the client. -->
-		<!--			
+		<!--
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 		</dependency>
 		-->
-                
+
         	<!-- Import the JSF API, we use provided scope as the API is included
         	    in JBoss AS 7 -->
         	<dependency>
         	    <groupId>org.jboss.spec.javax.faces</groupId>
         	    <artifactId>jboss-jsf-api_2.1_spec</artifactId>
         	    <scope>provided</scope>
-        	</dependency>  
-        		
+        	</dependency>
+
 		<!-- for cannot access javax.faces.application.FacesMessage -->
 		<!-- see in core project it is provided (needed for jboss 7) -->
 		<dependency>
@@ -125,7 +125,7 @@
 			<scope>${scope.tomcat.never.type}</scope>
 			<!-- <scope>compile</scope> compile needed for jetty -->
 		</dependency>
-		
+
 		<!-- TODO remove not needed
                 <dependency>
                         <groupId>javax.faces</groupId>
@@ -134,8 +134,8 @@
                         <scope>${scope.type}</scope>
                 </dependency>
 		-->
-                    
-		<!-- TODO remove 
+
+		<!-- TODO remove
     		<dependency>
         		<groupId>org.primefaces</groupId>
         		<artifactId>primefaces</artifactId>
@@ -174,7 +174,7 @@
 			<version>${sun.jsf.version}</version>
 			<scope>${scope.tomcat.only.type}</scope>
 		</dependency>
-		
+
 
 		<!-- http://repo1.maven.org/maven -->
 		<dependency>
@@ -192,7 +192,7 @@
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-			<version>${jsp.api.version}</version>			
+			<version>${jsp.api.version}</version>
 		</dependency>
 
 		<!-- Tomcat 6 need this -->
@@ -231,7 +231,7 @@
                         <scope>compile</scope>
                         <!--<scope>${scope.tomcat.never.type}</scope>-->
                 </dependency>
-                        		
+
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy-all</artifactId>
@@ -242,7 +242,7 @@
         	    <artifactId>sauce_junit</artifactId>
         	    <scope>test</scope>
         	</dependency>
-        	
+
         	<dependency>
         	    <groupId>com.saucelabs.selenium</groupId>
         	    <artifactId>sauce-ondemand-driver</artifactId>
@@ -262,7 +262,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- 
+		<!--
 		<dependency>
 			<groupId>org.seleniumhq.selenium.client-drivers</groupId>
 			<artifactId>selenium-java-client-driver</artifactId>
@@ -276,61 +276,61 @@
 			<artifactId>selenium-java</artifactId>
 			<!--<version>${selenium.driver.version}</version>-->
 			<scope>test</scope>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-remote-driver</artifactId>
 			<!--<version>${selenium.driver.version}</version>-->
-			<scope>test</scope>	
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-firefox-driver</artifactId>
 			<!--<version>${selenium.firefox.driver.version}</version>-->
-			<scope>test</scope>	
-		</dependency>                  
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-api</artifactId>
 			<!--<version>${selenium.driver.version}</version>-->
-			<scope>test</scope>	
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-support</artifactId>
 			<!--<version>${selenium.driver.version}</version>-->
-			<scope>test</scope>	
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-safari-driver</artifactId>
 			<!--<version>${selenium.safari.driver.version}</version>-->
-			<scope>test</scope>	
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-iphone-driver</artifactId>
 			<!--<version>${selenium.driver.version}</version>-->
-			<scope>test</scope>	
-		</dependency>						                        		
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-ie-driver</artifactId>
 			<!--<version>${selenium.driver.version}</version>-->
-			<scope>test</scope>	
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-htmlunit-driver</artifactId>
 			<!--<version>${selenium.driver.version}</version>-->
-			<scope>test</scope>	
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-android-driver</artifactId>
 			<!--<version>${selenium.driver.version}</version>-->
-			<scope>test</scope>	
-		</dependency>					
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-chrome-driver</artifactId>
@@ -363,7 +363,7 @@
 					<startURL>http://${cargo.host}:${cargo.port}</startURL>
 				</configuration>
 				-->
-				<!-- 				
+				<!--
 				<executions>
 					<execution>
 						<id>xvfb</id>
@@ -371,9 +371,9 @@
 						<goals>
 							<goal>xvfb</goal>
 						</goals>
-						<configuration> 
-							<display>:99</display> 
-						</configuration> 
+						<configuration>
+							<display>:99</display>
+						</configuration>
 					</execution>
 
 					<execution>
@@ -399,9 +399,9 @@
 							<goal>stop-server</goal>
 						</goals>
 					</execution>
-					
+
 				</executions>
-			-->				
+			-->
 			<!--
 			</plugin>
 			-->
@@ -441,7 +441,7 @@
 					</excludes>
 					<systemPropertyVariables>
 						<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-						<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>				
+						<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
             			<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
         			</systemPropertyVariables>
 				</configuration>
@@ -504,7 +504,7 @@
 						<timeout>180000</timeout> <!-- 5 minutes -->
 						<!--<containerId>${cargo.container}</containerId> -->
 						<!--<type>${cargo.container.type}</type> -->
-					</container>				
+					</container>
 					<configuration>
 						<!--<type>${cargo.configuration.type}</type>-->
 						<!--<home>${project.build.directory}/cargo/installs/jboss-as-dist-7.1.1.Final/jboss-as-7.1.1.Final/standalone/</home>-->
@@ -515,7 +515,7 @@
 							<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
 							<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
 							<cargo.logging>high</cargo.logging>
-							<!-- <cargo.jvmargs> -Dnabla.config=${basedir}/src/main/resources 
+							<!-- <cargo.jvmargs> -Dnabla.config=${basedir}/src/main/resources
 								-Dnabla.data=${basedir}/src/test/resources/data -->
 							<!-- -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -->
 							<!-- </cargo.jvmargs> -->
@@ -532,26 +532,26 @@
 							<pingURL>http://${cargo.host}:${cargo.port}/welcome</pingURL>
 							<pingTimeout>60000</pingTimeout>
 						</deployable>
-					</deployables>     
+					</deployables>
 				</configuration>
-				<!-- 
-				<executions>				
-        				<execution>
-        				    <id>pre-integration-test</id>
-        				    <phase>pre-integration-test</phase>
-        				    <goals>
-        				        <goal>deploy</goal>
-        				    </goals>
-        				</execution>
-        				<execution>
-        				    <id>post-integration-test</id>
-        				    <phase>post-integration-test</phase>
-        				    <goals>
-        				        <goal>undeploy</goal>
-        				    </goals>
-        				</execution>
-				</executions>		
-				-->		        						
+				<executions>
+					<execution>
+						<id>start</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+							<goal>deployer-deploy</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>deployer-undeploy</goal>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<!-- The JBoss AS plugin deploys your war to a local JBoss AS container -->
@@ -561,7 +561,7 @@
 				<artifactId>jboss-as-maven-plugin</artifactId>
 				<version>${maven.jboss.as.plugin.version}</version>
 			</plugin>
-			
+
 			<plugin>
 			<!-- Allow this web application to be started with the command : 'mvn jetty:run-war' -->
 				<groupId>org.eclipse.jetty</groupId>
@@ -600,10 +600,10 @@
             		     <configuration>
             		         <packagingExcludes>WEB-INF/lib/javaee-web-api*.jar</packagingExcludes>
             		     </configuration>
-            		</plugin>       
+            		</plugin>
             		-->
 
-			<!-- Allow this web application to be started with the command : 'mvn 
+			<!-- Allow this web application to be started with the command : 'mvn
 				tomcat7:run' -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
@@ -648,9 +648,9 @@
 	    			<configuration>
 	    				<skip>true</skip>
 	    			</configuration>
-	    		</plugin>   
+	    		</plugin>
 		</plugins>
-	</build>		
-	
+	</build>
+
 </project>
- 
+

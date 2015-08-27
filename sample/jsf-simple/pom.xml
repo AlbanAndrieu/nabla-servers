@@ -545,24 +545,24 @@
 						</deployable>
 					</deployables>
 				</configuration>
-				<!--
 				<executions>
-        				<execution>
-        				    <id>pre-integration-test</id>
-        				    <phase>pre-integration-test</phase>
-        				    <goals>
-        				        <goal>deploy</goal>
-        				    </goals>
-        				</execution>
-        				<execution>
-        				    <id>post-integration-test</id>
-        				    <phase>post-integration-test</phase>
-        				    <goals>
-        				        <goal>undeploy</goal>
-        				    </goals>
-        				</execution>
+					<execution>
+						<id>start</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+							<goal>deployer-deploy</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>deployer-undeploy</goal>
+							<goal>stop</goal>
+						</goals>
+					</execution>
 				</executions>
-				-->
 			</plugin>
 
 			<!-- The JBoss AS plugin deploys your war to a local JBoss AS container -->
