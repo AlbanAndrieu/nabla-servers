@@ -134,8 +134,7 @@
 							</properties>
 						</configuration>
 					</configuration>
-					<!--
-					  <executions>
+					<executions>
 						<execution>
 						  <id>start</id>
 						  <phase>pre-integration-test</phase>
@@ -156,8 +155,7 @@
 							<timeout>60000</timeout>
 						  </configuration>
 						</execution>
-					  </executions>
-					  -->
+					</executions>
 				</plugin>
 							  <!-- end Web application server helpers -->
 			</plugins>
