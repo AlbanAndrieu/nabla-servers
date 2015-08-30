@@ -545,6 +545,28 @@
 						</deployable>
 					</deployables>
 				</configuration>
+				<executions>
+					<execution>
+					  <id>start</id>
+					  <phase>pre-integration-test</phase>
+					  <goals>
+						<goal>start</goal>
+					  </goals>
+					  <configuration>
+						<timeout>240000</timeout>
+					  </configuration>
+					</execution>
+					<execution>
+					  <id>stop</id>
+					  <phase>post-integration-test</phase>
+					  <goals>
+						<goal>stop</goal>
+					  </goals>
+					  <configuration>
+						<timeout>60000</timeout>
+					  </configuration>
+					</execution>
+				</executions>
 				<!--
 				<executions>
 					<execution>
@@ -552,7 +574,7 @@
 						<phase>pre-integration-test</phase>
 						<goals>
 							<goal>start</goal>
-							<goal>deploy</goal>			
+							<goal>deploy</goal>
 						</goals>
 					</execution>
 					<execution>

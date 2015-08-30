@@ -134,6 +134,7 @@
 							</properties>
 						</configuration>
 					</configuration>
+					<!--
 					<executions>
 						<execution>
 						  <id>start</id>
@@ -156,6 +157,7 @@
 						  </configuration>
 						</execution>
 					</executions>
+					-->
 				</plugin>
 							  <!-- end Web application server helpers -->
 			</plugins>
