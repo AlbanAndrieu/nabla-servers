@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -11,9 +11,9 @@
    <meta name="apple-mobile-web-app-capable" content="yes"/>
    <!-- controls the appearance of the status bar in full-screen mode -->
    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-   <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/resources/css/mobile/slidfast.css"/>
-   <script type="text/javascript"
-           src="#{facesContext.externalContext.requestContextPath}/resources/js/slidfast.js"></script>
+   <h:link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/resources/css/mobile/slidfast.css"/>
+   <h:script type="text/javascript"
+           src="#{facesContext.externalContext.requestContextPath}/resources/js/slidfast.js"></h:script>
    <script type="text/javascript">
        //initialize mobile RichFaces with slidfast
        slidfast({
@@ -25,7 +25,7 @@
 
 </h:head>
 <h:body>
-   <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/resources/css/mobile/rf-mobile-skin.css"/>
+   <h:link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/resources/css/mobile/rf-mobile-skin.css"/>
    <div id="container">
       <div id="inner">
          <div id="content">
