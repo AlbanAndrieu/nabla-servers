@@ -41,6 +41,11 @@
 		<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>
 		<!-- TODO SEE https://docs.jboss.org/author/display/ARQ/Apache+OpenEJB+3.1+-+Embedded -->
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+		
+                <jdkLevel>1.7</jdkLevel>
+                <jdkVersion>1.7.0</jdkVersion>
+                <maven.compiler.target>${jdkLevel}</maven.compiler.target>
+                <maven.compiler.source>${jdkLevel}</maven.compiler.source>		
 	</properties>
 
 	<dependencyManagement>
