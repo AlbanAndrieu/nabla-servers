@@ -16,13 +16,13 @@
 	<description>The Servers pom file is a superpom to centralize all third parties</description>
 	<url>http://maven.nabla.mobi/dependencies/customs/main/databases/servers</url>
 
-		<scm>
-			<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/servers</connection>
-			<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/servers</developerConnection>
-			<url>https://alban.googlecode.com/svn/${project.svn.path}/servers</url>
-			<tag>HEAD</tag>
-		</scm>
-
+    		<scm>
+			<connection>scm:git:git://github.com/AlbanAndrieu/nabla-servers.git</connection>
+			<developerConnection>scm:git:git@github.com:AlbanAndrieu/nabla-servers.git</developerConnection>
+			<url>https://github.com/AlbanAndrieu/nabla-servers</url>
+			<tag>HEAD</tag>			
+    		</scm>
+    	
 		<ciManagement>
 				<system>Jenkins</system>
 				<url>${JOB_URL}</url>
