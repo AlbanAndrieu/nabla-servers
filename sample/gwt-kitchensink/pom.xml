@@ -46,8 +46,10 @@
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 
 		<!--<gwt.version>2.7.0</gwt.version>-->
+		<!--
         <jdkLevel>1.7</jdkLevel>
         <jdkVersion>1.7.0</jdkVersion>
+        -->
 	</properties>
 
 	<dependencyManagement>
