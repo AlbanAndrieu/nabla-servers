@@ -34,19 +34,4 @@ public final class KitchenSinkValidatorFactory extends AbstractGwtValidatorFacto
         return GWT.create(GwtValidator.class);
     }
 
-    /*
-    @Override
-    public ParameterNameProvider getParameterNameProvider()
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void close()
-    {
-        // TODO Auto-generated method stub
-
-    }
-    */
 }
