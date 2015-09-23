@@ -1,5 +1,6 @@
 package org.jboss.tools.gwt.kitchensink.client.local;
 
+//import javax.validation.ParameterNameProvider;
 import javax.validation.Validator;
 import javax.validation.groups.Default;
 
@@ -32,4 +33,20 @@ public final class KitchenSinkValidatorFactory extends AbstractGwtValidatorFacto
     {
         return GWT.create(GwtValidator.class);
     }
+
+    /*
+    @Override
+    public ParameterNameProvider getParameterNameProvider()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void close()
+    {
+        // TODO Auto-generated method stub
+
+    }
+    */
 }
