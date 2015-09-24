@@ -1,6 +1,7 @@
 .project
 .settings/
 .classpath
+.tern-project
 target/
 target-eclipse/
 /build/
