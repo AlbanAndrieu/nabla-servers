@@ -381,12 +381,14 @@
 
 		<!-- Annotation processor to generate the JPA 2.0 metamodel classes for
 			typesafe criteria queries -->
+		<!--
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>
 			<version>${hibernate.jpamodelgen.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		-->
 
 		<dependency>
 			<groupId>dom4j</groupId>
