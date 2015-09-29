@@ -414,7 +414,7 @@
 			<!--
 			</plugin>
 			-->
-
+			<!--
 			<plugin>
 				<groupId>org.codehaus.gmaven</groupId>
 				<artifactId>gmaven-plugin</artifactId>
@@ -437,6 +437,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -455,27 +456,9 @@
 						<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
         			</systemPropertyVariables>
 				</configuration>
-				<!--
-				<executions>
-					<execution>
-						<id>surefire-itest</id>
-						<phase>integration-test</phase>
-						<goals>
-							<goal>test</goal>
-						</goals>
-						<configuration>
-							<excludes>
-								<exclude>none</exclude>
-							</excludes>
-							<includes>
-								<include>**/*ITest*</include>
-								<include>**/*STest*</include>
-							</includes>
-						</configuration>
-					</execution>
-				</executions>
-				-->
+				
 			</plugin>
+			-->
 
 <!--
 <plugin>
