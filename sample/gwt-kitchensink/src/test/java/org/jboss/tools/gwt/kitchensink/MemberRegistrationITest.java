@@ -20,7 +20,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class MemberRegistrationTest
+public class MemberRegistrationITest
 {
     @Deployment
     public static Archive<?> createTestArchive()
