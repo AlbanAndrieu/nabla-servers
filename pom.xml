@@ -392,7 +392,7 @@
 									<cargo.jboss.management.port>9999</cargo.jboss.management.port>
 									<cargo.rmi.port>1099</cargo.rmi.port>-->
 									<cargo.jboss.ajp.port>${cargo.jboss.ajp.port}</cargo.jboss.ajp.port>
-									<cargo.jboss.osgi.http.port>{cargo.jboss.osgi.http.port}</cargo.jboss.osgi.http.port>
+									<cargo.jboss.osgi.http.port>${cargo.jboss.osgi.http.port}</cargo.jboss.osgi.http.port>
 									<cargo.jboss.management-native.port>${cargo.jboss.management.native.port}</cargo.jboss.management-native.port>
 									<cargo.jboss.management-http.port>${cargo.jboss.management.http.port}</cargo.jboss.management-http.port>
 									<cargo.jboss.remoting.transport.port>${cargo.jboss.remoting.transport.port}</cargo.jboss.remoting.transport.port>
