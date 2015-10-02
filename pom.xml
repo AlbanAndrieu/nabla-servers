@@ -56,14 +56,14 @@
 			<cargo.jboss.management.native.port>9995</cargo.jboss.management.native.port>
 			<cargo.jboss.management.http.port>9996</cargo.jboss.management.http.port>
 			<cargo.jboss.remoting.transport.port>4547</cargo.jboss.remoting.transport.port>
-			<cargo.jetty.jmx.activation>-Dcom.sun.management.jmxremote
+			<cargo.jetty.jmx.activation>-Dcom.sun.management.jmxremote=true
 -Dcom.sun.management.jmxremote.ssl=false
 -Dcom.sun.management.jmxremote.authenticate=false
 -Dcom.sun.management.jmxremote.port=${cargo.jmx.rmi.port}
 -Djetty.jmxrmihost=localhost
 -Djetty.jmxrmiport=${cargo.jmx.rmi.port}
             </cargo.jetty.jmx.activation>
-			<cargo.tomcat.jmx.activation>-Dcom.sun.management.jmxremote
+			<cargo.tomcat.jmx.activation>-Dcom.sun.management.jmxremote=true
 -Dcom.sun.management.jmxremote.ssl=false
 -Dcom.sun.management.jmxremote.authenticate=false
 -Dcom.sun.management.jmxremote.port=${cargo.jmx.rmi.port}
@@ -127,6 +127,7 @@
 								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
 								<cargo.jboss.osgi.http.port>${cargo.jboss.osgi.http.port}</cargo.jboss.osgi.http.port>
 								<cargo.jboss.jrmp.invoker.port>${cargo.jboss.jrmp.invoker.port}</cargo.jboss.jrmp.invoker.port>
+								<cargo.rmi.port>${cargo.rmi.port}</cargo.rmi.port>
 								<cargo.tomcat.manager.url>${deploy.url}</cargo.tomcat.manager.url>
 								<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
 								<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
