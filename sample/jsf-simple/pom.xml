@@ -29,7 +29,7 @@
 		<el.api.version>2.2.1-b04</el.api.version>
 		<jboss.el.version>1.0_02.CR6</jboss.el.version>
 		-->
-		<cargo.jetty.jmx.activation>-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=10088 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false</cargo.jetty.jmx.activation>		
+		<cargo.jetty.jmx.activation></cargo.jetty.jmx.activation>		
     </properties>
 
 	<dependencyManagement>
@@ -577,6 +577,12 @@
 				<groupId>com.sinapsi.memtracker</groupId>
 				<artifactId>mem-tracker-maven-plugin</artifactId>
 				<version>${maven.mem.tracker.maven.plugin.version}</version>
+				<configuration>
+				    <host>localhost</host>
+				    <port>1099</port>
+				    <!--<port>10088</port>-->
+				    <!--<output>target/mem-tracker/memory-usage.xml</output>-->
+				</configuration>				
 				<executions>
 					<execution>
 						<id>integration-test</id>
