@@ -24,12 +24,8 @@ import org.openqa.selenium.server.SeleniumServer;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.thoughtworks.selenium.DefaultSelenium;
-import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
 public class SimpleWebDriverSTest
 {
@@ -45,7 +41,7 @@ public class SimpleWebDriverSTest
     public static final String         DEFAULT_FIREFOXBIN   = "/usr/lib/firefox/firefox";                   // "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
 
     public static final String         DEFAULT_HOST         = "localhost";
-    public static final String         DEFAULT_PORT         = "8180";
+    public static final String         DEFAULT_PORT         = "9090";
     public static final String         DEFAULT_URL          = "http://" + DEFAULT_HOST + ":" + DEFAULT_PORT;
     public static final String         PAGE_TO_LOAD_TIMEOUT = "30000";
     private static WebDriver           DRIVER;
@@ -170,7 +166,6 @@ public class SimpleWebDriverSTest
     @AfterClass
     public static void tearDown() throws Exception
     {
-        // stopSeleniumServer(server, selenium);
         if (null != DRIVER)
         {
             DRIVER.quit();
@@ -260,21 +255,4 @@ public class SimpleWebDriverSTest
         }
     }
 
-    public static void stopSeleniumServer(SeleniumServer server, DefaultSelenium selenium)
-    {
-        selenium.stop();
-        if (server != null)
-        {
-            try
-            {
-                selenium.shutDownSeleniumServer();
-                server.stop();
-
-                server = null;
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-    }
 }

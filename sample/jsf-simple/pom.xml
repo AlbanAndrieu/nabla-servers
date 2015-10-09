@@ -19,6 +19,7 @@
     <properties>
 		<!-- for jmeter -->
 		<performancetest.webservice.path>/welcome</performancetest.webservice.path>
+		<jetty9.version>9.3.3.v20150827</jetty9.version>
 		<!--
 		<jsf.api.version>2.1</jsf.api.version>
         <jsf.impl.version>2.1</jsf.impl.version>
@@ -29,7 +30,8 @@
 		<el.api.version>2.2.1-b04</el.api.version>
 		<jboss.el.version>1.0_02.CR6</jboss.el.version>
 		-->
-		<cargo.jetty.jmx.activation></cargo.jetty.jmx.activation>		
+		<!--<cargo.jetty.jmx.activation>-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=10088 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false</cargo.jetty.jmx.activation>-->
+		<cargo.jetty.jmx.activation></cargo.jetty.jmx.activation>
     </properties>
 
 	<dependencyManagement>
@@ -516,6 +518,33 @@
 							<!-- -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -->
 							<!-- </cargo.jvmargs> -->
 						</properties>
+						<configfiles>
+							<configfile>
+								<file>${project.basedir}/src/main/config/demo-base/etc</file>
+								<todir>etc</todir>
+							</configfile>
+							<configfile>
+								<file>${project.basedir}/src/main/config/demo-base/start.d</file>
+								<todir>start.d</todir>
+							</configfile>
+							<configfile>
+								<file>${project.basedir}/src/main/config/demo-base/webapps</file>
+								<todir>webapps</todir>
+							</configfile>
+							<configfile>
+								<file>${project.basedir}/src/main/config/demo-base/start.ini</file>
+								<todir></todir>
+							</configfile>
+						</configfiles>
+						<!-- https://codehaus-cargo.github.io/cargo/Maven2+Plugin+Reference+Guide.html#Maven2PluginReferenceGuide-file -->
+                        <files>
+							<configfile>
+								<file>${project.basedir}/src/main/config/demo-base/keystore</file>
+								<todir>etc</todir>
+								<configfile>false</configfile>
+								<overwrite>true</overwrite>
+							</configfile>
+                        </files>
 					</configuration>
 					<deployables>
 						<deployable>
@@ -552,37 +581,15 @@
 					  </configuration>
 					</execution>
 				</executions>
-				<!--
-				<executions>
-					<execution>
-						<id>start</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>stop</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>undeploy</goal>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-				-->
 			</plugin>
 			<plugin>
 				<groupId>com.sinapsi.memtracker</groupId>
 				<artifactId>mem-tracker-maven-plugin</artifactId>
 				<version>${maven.mem.tracker.maven.plugin.version}</version>
 				<configuration>
-				    <host>localhost</host>
-				    <port>1099</port>
-				    <!--<port>10088</port>-->
-				    <!--<output>target/mem-tracker/memory-usage.xml</output>-->
-				</configuration>				
+					<host>localhost</host>
+					<port>${cargo.monitoring.jmx.rmi.port}</port>
+				</configuration>
 				<executions>
 					<execution>
 						<id>integration-test</id>
