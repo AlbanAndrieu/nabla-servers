@@ -68,7 +68,6 @@
             	<type>pom</type>
             	<scope>import</scope>
             </dependency>
-            <!--
             <dependency>
             	<groupId>org.jboss.spec</groupId>
             	<artifactId>jboss-javaee-web-6.0</artifactId>
@@ -77,7 +76,6 @@
             	<scope>import</scope>
             	<optional>false</optional>
             </dependency>
-            -->
         </dependencies>
     </dependencyManagement>
 
@@ -203,14 +201,12 @@
             <scope>provided</scope>
         </dependency>
 
-        <!--
         <dependency>
         	<groupId>org.jboss.spec.javax.faces</groupId>
         	<artifactId>jboss-jsf-api_2.0_spec</artifactId>
         	<scope>provided</scope>
         	<optional>false</optional>
         </dependency>
-        -->
 
         <!-- Import the JSF impl, to allow for application debugging -->
         <dependency>
