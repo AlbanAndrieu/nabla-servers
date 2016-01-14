@@ -1049,7 +1049,7 @@
 								<configuration>
 								  <configuration>
 									<properties>
-									  <cargo.start.jvmargs>${jacoco.agent.it.arg}</cargo.start.jvmargs>
+									  <cargo.jvmargs>${jacoco.agent.it.arg}</cargo.jvmargs>
 									</properties>
 								  </configuration>
 								</configuration>
