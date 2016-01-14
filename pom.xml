@@ -1026,6 +1026,8 @@
 						<configuration>
 							<container>
 								<containerId>${cargo.container}</containerId>
+								<log>${project.build.directory}/cargo.log</log>
+								<logLevel>debug</logLevel>
 								<artifactInstaller>
 									<groupId>org.eclipse.jetty</groupId>
 									<artifactId>jetty-distribution</artifactId>
