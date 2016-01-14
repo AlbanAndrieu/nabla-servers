@@ -1047,11 +1047,9 @@
 									<goal>start</goal>
 								</goals>
 								<configuration>
-								  <configuration>
 									<properties>
 									  <cargo.jvmargs>${jacoco.agent.it.arg}</cargo.jvmargs>
 									</properties>
-								  </configuration>
 								</configuration>
 							</execution>
 							<execution>
@@ -1633,8 +1631,7 @@
 				</dependency>
 				<dependency>
 					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-simple</artifactId>
-					<!--<version>1.6.4</version>-->
+					<artifactId>slf4j-log4j12</artifactId>
 					<version>${slf4j.version}</version>
 					<scope>test</scope>
 				</dependency>
