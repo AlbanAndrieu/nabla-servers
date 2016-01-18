@@ -193,10 +193,11 @@ public class SimpleWebDriverSTest
 
         getCurrentDriver().findElement(By.name(SUBMIT_BUTTON_ID)).click();
 
+        Thread.sleep(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT); // 30 s
+        
         assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", getCurrentDriver().findElement(By.cssSelector("h3")).getText());
         assertEquals("Welcome Test me !!!", getCurrentDriver().findElement(By.cssSelector("h4")).getText());
         
-        Thread.sleep(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT); // 30 s
     }
 
     @AfterClass
