@@ -32,12 +32,14 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 	private static final String SELENIUM_HUB_URL = "http://home.nabla.mobi:4444/wd/hub";
 
 	private static final transient Logger LOGGER = LoggerFactory.getLogger(SimpleRemoteWebDriverSTest.class);
-
+    
+	public static final long           PAGE_TO_LOAD_TIMEOUT = 30000;
+    
     private static WebDriver           REAL_DRIVER;
     private static String              BASE_URL           = SimpleWebDriverSTest.DEFAULT_URL;
     private static String              CHROME_DRIVER      = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
     private static String              FIREFOX_BIN        = SimpleWebDriverSTest.DEFAULT_FIREFOXBIN;
-    private boolean                    acceptNextAlert    = true;
+    //private boolean                    acceptNextAlert    = true;
     //private static StringBuffer        VERIFICATION_ERRORS = new StringBuffer();
     // private DefaultSelenium selenium;
 
@@ -282,7 +284,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
     public void testSimpleS() throws Exception
     {
     	getCurrentDriver().get(BASE_URL + "/welcome/hello.xhtml");
-        // selenium.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
+
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
         assertEquals("JSF 2.0 Hello World Example - hello.xhtml", getCurrentDriver().findElement(By.cssSelector("h3")).getText());
         getCurrentDriver().findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID)).clear();
@@ -308,6 +310,8 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
         assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", getCurrentDriver().findElement(By.cssSelector("h3")).getText());
         assertEquals("Welcome Test me !!!", getCurrentDriver().findElement(By.cssSelector("h4")).getText());
+        
+        Thread.sleep(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT); // 30 s
     }
 
     @AfterClass

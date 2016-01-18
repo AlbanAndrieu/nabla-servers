@@ -32,14 +32,16 @@ public class SimpleWebDriverSTest
     public static final String         DEFAULT_FIREFOXBIN   = "/usr/lib/firefox/firefox";                   // "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
 
     public static final String         DEFAULT_HOST         = "localhost";
-    public static final String         DEFAULT_PORT         = "8280";
+    public static final String         DEFAULT_PORT         = "9090";
     public static final String         DEFAULT_URL          = "http://" + DEFAULT_HOST + ":" + DEFAULT_PORT;
-    public static final String         PAGE_TO_LOAD_TIMEOUT = "30000";
+
+    public static final long           PAGE_TO_LOAD_TIMEOUT = 30000;
+
     private static WebDriver           REAL_DRIVER;
     private static String              BASE_URL             = DEFAULT_URL;
     private static String              CHROME_DRIVER        = DEFAULT_CHROMEDRIVER;
     private static String              FIREFOX_BIN          = DEFAULT_FIREFOXBIN;
-    private boolean                    acceptNextAlert      = true;
+    //private boolean                    acceptNextAlert      = true;
     //private static StringBuffer        VERIFICATION_ERRORS = new StringBuffer();
     //private static DefaultSelenium     SELENIUM;
 
@@ -167,7 +169,7 @@ public class SimpleWebDriverSTest
     public void testSimpleS() throws Exception
     {
         getCurrentDriver().get(BASE_URL + "/welcome/hello.xhtml");
-        //SELENIUM.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
+
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
         assertEquals("JSF 2.0 Hello World Example - hello.xhtml", getCurrentDriver().findElement(By.cssSelector("h3")).getText());
         getCurrentDriver().findElement(By.name(INPUT_TEXT_ID)).clear();
@@ -193,6 +195,8 @@ public class SimpleWebDriverSTest
 
         assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", getCurrentDriver().findElement(By.cssSelector("h3")).getText());
         assertEquals("Welcome Test me !!!", getCurrentDriver().findElement(By.cssSelector("h4")).getText());
+        
+        Thread.sleep(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT); // 30 s
     }
 
     @AfterClass
