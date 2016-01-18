@@ -1,26 +1,17 @@
 package com.nabla.selenium.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
-import java.net.BindException;
-import java.net.ServerSocket;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.server.RemoteControlConfiguration;
-import org.openqa.selenium.server.SeleniumServer;
+import org.openqa.selenium.os.WindowsUtils;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -41,25 +32,54 @@ public class SimpleWebDriverSTest
     public static final String         DEFAULT_FIREFOXBIN   = "/usr/lib/firefox/firefox";                   // "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
 
     public static final String         DEFAULT_HOST         = "localhost";
-    public static final String         DEFAULT_PORT         = "9090";
+    public static final String         DEFAULT_PORT         = "8280";
     public static final String         DEFAULT_URL          = "http://" + DEFAULT_HOST + ":" + DEFAULT_PORT;
     public static final String         PAGE_TO_LOAD_TIMEOUT = "30000";
-    private static WebDriver           DRIVER;
+    private static WebDriver           REAL_DRIVER;
     private static String              BASE_URL             = DEFAULT_URL;
     private static String              CHROME_DRIVER        = DEFAULT_CHROMEDRIVER;
     private static String              FIREFOX_BIN          = DEFAULT_FIREFOXBIN;
     private boolean                    acceptNextAlert      = true;
-    private static StringBuffer        _VERIFICATION_ERRORS = new StringBuffer();
+    //private static StringBuffer        VERIFICATION_ERRORS = new StringBuffer();
     //private static DefaultSelenium     SELENIUM;
 
-    private static DesiredCapabilities CAPABILITIES;
+    //private static DesiredCapabilities CAPABILITIES;
 
     private static long DEPLOY_WAIT = 10;
     // public static SeleniumServer server;
 
+    private static final Thread           CLOSE_THREAD         = new Thread()
+    {
+        @Override
+        public void run()
+        {
+            if (null != SimpleWebDriverSTest.REAL_DRIVER)
+            {
+                REAL_DRIVER.close();
+                SimpleWebDriverSTest.LOGGER.info("closing the browser");
+            }
+        }
+    };
+
+    static
+    {
+        Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
+    }
+    
+    public static void close()
+    {
+        if (Thread.currentThread() != CLOSE_THREAD)
+        {
+            throw new UnsupportedOperationException("You shouldn't close this WebDriver. It's shared and will close when the JVM exits.");
+        }
+        // super.close();
+    }
+    
     @BeforeClass
     public static void setUp() throws Exception
     {
+    	
+        WindowsUtils.tryToKillByName("firefox.exe");        
 
         BASE_URL = System.getProperty("webdriver.base.url");
 
@@ -93,15 +113,8 @@ public class SimpleWebDriverSTest
         // FirefoxProfile profile = new FirefoxProfile();
         // FirefoxBinary binary = new FirefoxBinary(new File(firefoxBin));
         // driver = new FirefoxDriver(binary, profile);
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("no-sandbox");
 
-        CAPABILITIES = DesiredCapabilities.chrome();
-        CAPABILITIES.setCapability(ChromeOptions.CAPABILITY, options);
-
-        CAPABILITIES.setJavascriptEnabled(true);
-
-        DRIVER = new ChromeDriver(CAPABILITIES);
+        REAL_DRIVER = SimpleWebDriverSTest.getCurrentDriver();
         // driver = new FirefoxDriver(profile);
         // driver = new HtmlUnitDriver(true);
 
@@ -111,9 +124,9 @@ public class SimpleWebDriverSTest
         // WebDriver augmentedDriver = new Augmenter().augment(driver);
         // File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 
-        DRIVER.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        REAL_DRIVER.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         // driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-        DRIVER.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+        REAL_DRIVER.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         // driver.manage().window().setSize(new Dimension(1920, 1080));
         //SELENIUM = new WebDriverBackedSelenium(DRIVER, BASE_URL);
 
@@ -122,6 +135,25 @@ public class SimpleWebDriverSTest
         // screenshot.
     }
 
+    private synchronized static WebDriver getCurrentDriver()
+    {
+        if (SimpleWebDriverSTest.REAL_DRIVER == null)
+        {
+            //ChromeOptions options = new ChromeOptions();
+        	//options.addArguments("no-sandbox");
+
+        	//CAPABILITIES = DesiredCapabilities.chrome();
+        	//CAPABILITIES.setCapability(ChromeOptions.CAPABILITY, options);
+
+        	//CAPABILITIES.setJavascriptEnabled(true);
+
+        	//SimpleWebDriverSTest.REAL_DRIVER = new ChromeDriver(CAPABILITIES);
+            
+        	SimpleWebDriverSTest.REAL_DRIVER = new ChromeDriver();
+        }
+        return SimpleWebDriverSTest.REAL_DRIVER;
+    }
+    
     /*
      * @Before
      * public void homePageRefresh() throws IOException
@@ -134,15 +166,15 @@ public class SimpleWebDriverSTest
     @Test
     public void testSimpleS() throws Exception
     {
-        DRIVER.get(BASE_URL + "/welcome/hello.xhtml");
+        getCurrentDriver().get(BASE_URL + "/welcome/hello.xhtml");
         //SELENIUM.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
-        assertEquals("JSF 2.0 Hello World Example - hello.xhtml", DRIVER.findElement(By.cssSelector("h3")).getText());
-        DRIVER.findElement(By.name(INPUT_TEXT_ID)).clear();
-        DRIVER.findElement(By.name(INPUT_TEXT_ID)).sendKeys("Test me !!!");
+        assertEquals("JSF 2.0 Hello World Example - hello.xhtml", getCurrentDriver().findElement(By.cssSelector("h3")).getText());
+        getCurrentDriver().findElement(By.name(INPUT_TEXT_ID)).clear();
+        getCurrentDriver().findElement(By.name(INPUT_TEXT_ID)).sendKeys("Test me !!!");
 
         // wait for the application to get fully loaded
-        WebElement findOwnerLink = (new WebDriverWait(DRIVER, 5)).until(new ExpectedCondition<WebElement>()
+        WebElement findOwnerLink = (new WebDriverWait(getCurrentDriver(), 5)).until(new ExpectedCondition<WebElement>()
         {
             public WebElement apply(WebDriver d)
             {
@@ -153,35 +185,36 @@ public class SimpleWebDriverSTest
 
         findOwnerLink.click();
 
-        WebDriverWait wait = new WebDriverWait(DRIVER, 10);
+        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
         wait.until(ExpectedConditions.elementToBeClickable(By.name(SUBMIT_BUTTON_ID)));
-        DRIVER.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        getCurrentDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        DRIVER.findElement(By.name(SUBMIT_BUTTON_ID)).click();
+        getCurrentDriver().findElement(By.name(SUBMIT_BUTTON_ID)).click();
 
-        assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", DRIVER.findElement(By.cssSelector("h3")).getText());
-        assertEquals("Welcome Test me !!!", DRIVER.findElement(By.cssSelector("h4")).getText());
+        assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", getCurrentDriver().findElement(By.cssSelector("h3")).getText());
+        assertEquals("Welcome Test me !!!", getCurrentDriver().findElement(By.cssSelector("h4")).getText());
     }
 
     @AfterClass
     public static void tearDown() throws Exception
     {
-        if (null != DRIVER)
+        if (null != getCurrentDriver())
         {
-            DRIVER.quit();
+            getCurrentDriver().quit();
         }
-        String verificationErrorString = _VERIFICATION_ERRORS.toString();
-        if (!"".equals(verificationErrorString))
-        {
-            fail(verificationErrorString);
-        }
+        //String verificationErrorString = VERIFICATION_ERRORS.toString();
+        //if (!"".equals(verificationErrorString))
+        //{
+        //    fail(verificationErrorString);
+        //}
     }
 
+    /*
     private boolean isElementPresent(By by)
     {
         try
         {
-            DRIVER.findElement(by);
+            getCurrentDriver().findElement(by);
             return true;
         } catch (NoSuchElementException e)
         {
@@ -193,7 +226,7 @@ public class SimpleWebDriverSTest
     {
         try
         {
-            DRIVER.switchTo().alert();
+            getCurrentDriver().switchTo().alert();
             return true;
         } catch (NoAlertPresentException e)
         {
@@ -205,7 +238,7 @@ public class SimpleWebDriverSTest
     {
         try
         {
-            Alert alert = DRIVER.switchTo().alert();
+            Alert alert = getCurrentDriver().switchTo().alert();
             String alertText = alert.getText();
             if (acceptNextAlert)
             {
@@ -220,39 +253,6 @@ public class SimpleWebDriverSTest
             acceptNextAlert = true;
         }
     }
-
-    public static void startSeleniumServer(SeleniumServer server) throws Exception
-    {
-
-        try
-        {
-            ServerSocket serverSocket = new ServerSocket(RemoteControlConfiguration.DEFAULT_PORT);
-            serverSocket.close();
-
-            try
-            {
-                RemoteControlConfiguration rcc = new RemoteControlConfiguration();
-                rcc.setPort(RemoteControlConfiguration.DEFAULT_PORT);
-                server = new SeleniumServer(false, rcc);
-
-            } catch (Exception e)
-            {
-                System.err.println("Could not create Selenium Server because of: " + e.getMessage());
-                e.printStackTrace();
-            }
-            try
-            {
-                server.start();
-                System.out.println("Server started");
-            } catch (Exception e)
-            {
-                System.err.println("Could not start Selenium Server because of: " + e.getMessage());
-                e.printStackTrace();
-            }
-        } catch (BindException e)
-        {
-            System.out.println("Selenium server already up, will reuse...");
-        }
-    }
+    */
 
 }
