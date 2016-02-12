@@ -132,8 +132,9 @@ public class SimpleWebDriverSTest
         // driver.manage().window().setSize(new Dimension(1920, 1080));
         //SELENIUM = new WebDriverBackedSelenium(DRIVER, BASE_URL);
 
-        SimpleWebDriverSTest.LOGGER.info("Waiting for deploy to be finished before starting test (in seconds) : {}", DEPLOY_WAIT);
-        TimeUnit.SECONDS.sleep(DEPLOY_WAIT);
+        SimpleWebDriverSTest.LOGGER.info("Waiting for deploy to be finished before starting test (in seconds) : {}", PAGE_TO_LOAD_TIMEOUT / 1000);
+        //TimeUnit.SECONDS.sleep(DEPLOY_WAIT);
+        Thread.sleep(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT); // 30 s
         // screenshot.
     }
 

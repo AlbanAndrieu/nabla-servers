@@ -45,7 +45,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
     private static DesiredCapabilities CAPABILITIES;
 
-    private static long DEPLOY_WAIT = 300;
+    private static long DEPLOY_WAIT = 10;
 
     // private static Platform ANDROID, LINUX, MAC, UNIX, VISTA, WINDOWS, XP, platformValue;
     // private String browser, browserVersion, platform, sessionId = "";
@@ -212,8 +212,9 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         // driver.manage().window().setSize(new Dimension(1920, 1080));
         // selenium = new WebDriverBackedSelenium(driver, baseUrl);
 
-        SimpleRemoteWebDriverSTest.LOGGER.info("Waiting for deploy to be finished before starting test (in seconds) : {}", DEPLOY_WAIT);
-        TimeUnit.SECONDS.sleep(DEPLOY_WAIT);
+        SimpleRemoteWebDriverSTest.LOGGER.info("Waiting for deploy to be finished before starting test (in seconds) : {}", PAGE_TO_LOAD_TIMEOUT / 1000);
+        //TimeUnit.SECONDS.sleep(DEPLOY_WAIT);
+        Thread.sleep(PAGE_TO_LOAD_TIMEOUT); // 30 s
         // screenshot.
     }
 
