@@ -37,6 +37,41 @@
 
     <dependencyManagement>
         <dependencies>
+        
+             <!-- Override dependency resolver with latest version.
+             This must go *BEFORE* the Arquillian BOM. -->
+	    <!--  ShrinkWrap  -->
+	    <dependency>
+	    	<groupId>org.jboss.shrinkwrap</groupId>
+	    	<artifactId>shrinkwrap-bom</artifactId>
+	    	<version>${org.jboss.shrinkwrap.bom.version}</version>
+	    	<type>pom</type>
+	    	<scope>import</scope>
+	    </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-bom</artifactId>
+                <version>${org.jboss.shrinkwrap.resolver.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                <artifactId>shrinkwrap-descriptors-bom</artifactId>
+                <version>${org.jboss.shrinkwrap.descriptors.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${org.jboss.arquillian.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+                    
             <!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
                 of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
                 of artifacts. We use this here so that we always get the correct versions
