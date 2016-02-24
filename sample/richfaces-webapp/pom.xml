@@ -316,7 +316,11 @@
             <artifactId>arquillian-junit-container</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <artifactId>arquillian-core-api</artifactId>
+            <groupId>org.jboss.arquillian.core</groupId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.protocol</groupId>
             <artifactId>arquillian-protocol-servlet</artifactId>

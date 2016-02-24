@@ -1597,8 +1597,11 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
                 <property>
+                    <name>!profile.activation</name>
+                    <!--
                     <name>arquillian</name>
                     <value>arq-weld-ee-embedded</value>
+                    -->
                 </property>
 			</activation>
 			<dependencies>
