@@ -655,9 +655,11 @@
         	/ with.clover.everything profiles would not overwrite the default setting (and we have to disable two goals) -->
         	<profile>
         	    <id>default</id>
+        	    <!--
 				<activation>
 					<activeByDefault>true</activeByDefault>
 				</activation>
+				-->
         	    <build>
         	        <plugins>
 			    <!-- The default profile skips all tests, though you can tune it to run
@@ -668,6 +670,7 @@
 			    	<groupId>org.apache.maven.plugins</groupId>
 			    	<artifactId>maven-surefire-plugin</artifactId>
 			    	<version>${maven.surefire.plugin.version}</version>
+			    	<inherited>true</inherited>
 			    	<configuration>
 			    		<skip>true</skip>
 			    	</configuration>
@@ -727,7 +730,7 @@
         	<!-- But thanks to this you can perform full tests or your application in a web browser           -->
         	<!-- ============================================================================================ -->
         	<profile>
-        	    <id>with.test</id>
+        	    <id>with-test</id>
         	    <build>
         	        <plugins>
         	            <!-- GWT Maven Plugin -->
@@ -791,7 +794,7 @@
         	<!-- But thanks to this you can perform full tests or your application in a web browser           -->
         	<!-- ============================================================================================ -->
         	<profile>
-        	    <id>with.clover.serveronly</id>
+        	    <id>with-clover-serveronly</id>
         	    <build>
         	        <plugins>
         	            <!-- GWT Maven Plugin -->
@@ -864,7 +867,7 @@
         	<!-- gwt-test-utils is used for this purpose.                                                     -->
         	<!-- ============================================================================================ -->
         	<profile>
-        	    <id>with.clover.everything</id>
+        	    <id>with-clover-everything</id>
         	    <build>
         	        <plugins>
         	            <plugin>

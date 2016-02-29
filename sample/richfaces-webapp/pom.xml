@@ -431,13 +431,18 @@
         <!-- Seperate profiles are provided for running all tests, including Arquillian tests that execute in the specified container -->
         <profile>
             <id>default</id>
+            <!--
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            -->
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
+                        <groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven.surefire.plugin.version}</version>
+						<inherited>true</inherited>
                         <configuration>
                             <skip>true</skip>
                         </configuration>
