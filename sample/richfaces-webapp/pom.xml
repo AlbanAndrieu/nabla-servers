@@ -9,7 +9,6 @@
 	</parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <!--<groupId>org.jboss.tools.example.richfaces</groupId>-->
     <artifactId>richfaces-webapp</artifactId>
     <packaging>war</packaging>
     <name>JBoss AS Quickstarts: Richefaces kitchensink</name>
@@ -248,7 +247,7 @@
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>
-            <scope>provided</scope>
+            <scope>${scope.tomcat.only.type}</scope>
         </dependency>
 
         <!-- Import the Servlet API, we use provided scope as the API is included in JBoss AS 7 -->
