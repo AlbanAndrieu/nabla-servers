@@ -703,6 +703,7 @@
 			    	<groupId>org.apache.maven.plugins</groupId>
 			    	<artifactId>maven-surefire-plugin</artifactId>
 			    	<version>${maven.surefire.plugin.version}</version>
+			    	<inherited>true</inherited>
 			    	<configuration>
 			    		<skip>true</skip>
 			    	</configuration>
@@ -899,7 +900,7 @@
         	<!-- gwt-test-utils is used for this purpose.                                                     -->
         	<!-- ============================================================================================ -->
         	<profile>
-        	    <id>with.clover.everything</id>
+        	    <id>with-clover-everything</id>
         	    <build>
         	        <plugins>
         	            <plugin>
