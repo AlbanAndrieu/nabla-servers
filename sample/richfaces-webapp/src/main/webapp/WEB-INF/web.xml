@@ -23,4 +23,17 @@
   <welcome-file-list>
     <welcome-file>index.jsf</welcome-file>
   </welcome-file-list>
+  
+  <!--
+  <listener>
+    <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+  </listener>
+  -->
+    
+  <!-- For Jetty to work -->
+  <!-- works with com.sun.faces --> 
+  <listener>
+      <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+  </listener>
+    
 </web-app>

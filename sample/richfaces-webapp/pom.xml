@@ -242,7 +242,21 @@
         	<optional>false</optional>
         </dependency>
         -->
-
+        <!-- javax.faces.flow.Flow javax.faces-api-2.2.jar -->
+        <!-- http://stackoverflow.com/questions/18654762/jsf-2-2-flows-and-tomcat-7-java-lang-noclassdeffounderror-javax-enterprise-cont -->
+        <dependency>
+                <groupId>javax.faces</groupId>
+                <artifactId>jsf-api</artifactId>
+                <version>${jsf.api.version}</version>
+                <scope>provided</scope>
+        </dependency>
+        <dependency>
+                <groupId>javax.faces</groupId>
+                <artifactId>jsf-impl</artifactId>
+                <version>${jsf.impl.version}</version>
+                <scope>${scope.tomcat.only.type}</scope>
+        </dependency>
+                                
         <!-- Import the JSF impl, to allow for application debugging -->
         <dependency>
             <groupId>com.sun.faces</groupId>

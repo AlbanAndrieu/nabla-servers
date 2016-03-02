@@ -1591,7 +1591,7 @@
                         <!-- ================= END Container Profiles ================= -->
 
                         <!-- ================= START Container JBoss Specific Profiles ================= -->
-                <!-- Run with: mvn clean test -Parq-weld-ee-embedded -->
+                <!-- Run with: mvn clean test -Parq-weld-ee-embedded -Dserver=jboss5x -->
                 <profile>
                         <id>arq-weld-ee-embedded</id>
                         <activation>
