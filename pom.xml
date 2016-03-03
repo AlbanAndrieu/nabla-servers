@@ -1595,11 +1595,14 @@
                 <profile>
                         <id>arq-weld-ee-embedded</id>
                         <activation>
-                                <activeByDefault>true</activeByDefault>
-                <property>
-                    <name>arquillian</name>
-                    <value>arq-weld-ee-embedded</value>
-                </property>
+                                <!--<activeByDefault>true</activeByDefault>-->
+                                <property>
+									<name>!profile.activation</name>
+									<!--
+                                    <name>arquillian</name>
+                                    <value>arq-weld-ee-embedded</value>
+                                    -->
+                                </property>
                         </activation>
                         <dependencies>
                                 <!--
@@ -1681,15 +1684,12 @@
                                 test, shutting it down when done -->
                         <!-- Run with: mvn clean test -Parq-jbossas-managed -->
                         <id>arq-jbossas-managed</id>
-            <activation>                
-                <property>
-                    <name>!profile.activation</name>
-                    <!--
-                    <name>arquillian</name>
-                    <value>arq-jbossas-managed</value>
-                    -->
-                </property>                
-            </activation>
+                        <activation>
+                            <property>
+                                <name>arquillian</name>
+                                <value>arq-jbossas-managed</value>
+                            </property>
+                        </activation>
                         <dependencies>
                                 <!--
                                 <dependency>
