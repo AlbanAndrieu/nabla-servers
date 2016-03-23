@@ -1653,9 +1653,11 @@
                                 <arquillian.launch>arq-weld-ee-embedded</arquillian.launch>
                                 <arquillian>arq-weld-ee-embedded</arquillian>
                             </systemProperties>
+                            <!--
                             <excludes>
                                <exclude>**/jbossas/**</exclude>
                             </excludes>
+                            -->
                         </configuration>
                     </plugin>
                 </plugins>
@@ -1855,6 +1857,7 @@
                                 </dependency>
                         </dependencies>
                          <build>
+			   <!--
                <plugins>
                   <plugin>
                      <groupId>org.apache.maven.plugins</groupId>
@@ -1867,6 +1870,7 @@
                      </configuration>
                   </plugin>
                </plugins>
+               -->
             </build>
                 </profile>
 
@@ -1888,6 +1892,7 @@
                 </dependency>
             </dependencies>
 
+			<!--
             <build>
                <plugins>
                   <plugin>
@@ -1902,6 +1907,7 @@
                   </plugin>
                </plugins>
             </build>
+            -->
         </profile>
 
                 <profile>
@@ -2018,10 +2024,12 @@
                                 <arquillian.launch>arq-jetty-embedded</arquillian.launch>
                                 <arquillian>arq-jetty-embedded</arquillian>
                             </systemProperties>
+                            <!--
                             <excludes>
                                 <exclude>**/weld/**</exclude>
-                                                                <exclude>**/jbossas/**</exclude>
+                                <exclude>**/jbossas/**</exclude>
                             </excludes>
+                            -->
                         </configuration>
                     </plugin>
                 </plugins>
