@@ -1595,13 +1595,11 @@
                 <profile>
                         <id>arq-weld-ee-embedded</id>
                         <activation>
-                                <!--<activeByDefault>true</activeByDefault>-->
                                 <property>
-									<name>!profile.activation</name>
-									<!--
+									<!--<name>!profile.activation</name>-->
                                     <name>arquillian</name>
                                     <value>arq-weld-ee-embedded</value>
-                                    -->
+
                                 </property>
                         </activation>
                         <dependencies>
@@ -1690,8 +1688,11 @@
                         <id>arq-jbossas-managed</id>
                         <activation>
                             <property>
+								<name>!profile.activation</name>
+								<!--
                                 <name>arquillian</name>
                                 <value>arq-jbossas-managed</value>
+                                -->
                             </property>
                         </activation>
                         <dependencies>
