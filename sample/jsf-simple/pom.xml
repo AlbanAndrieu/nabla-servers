@@ -204,10 +204,18 @@
 			<version>${jstl.version}</version>
 		</dependency>
 
+		<!--
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>${scope.tomcat.never.type}</scope>
+        </dependency>-->
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet.api.version}</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.servlet.api.version}</version>
+			<scope>provided</scope> <!-- javax.servlet-api-3.0.1.jar Offending class javax/servlet/Servlet.class  in Tomcat -->
 		</dependency>
 
 		<dependency>
@@ -245,13 +253,30 @@
 			<scope>${scope.type}</scope>
 		</dependency>
 		-->
-                <dependency>
-                        <groupId>commons-httpclient</groupId>
-                        <artifactId>commons-httpclient</artifactId>
-                        <version>${commons.httpclient.version}</version>
-                        <scope>compile</scope>
-                        <!--<scope>${scope.tomcat.never.type}</scope>-->
-                </dependency>
+        <!--
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <exclusions>
+                <!-- circular dependency -->
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
@@ -826,6 +851,13 @@
                      <groupId>ch.qos.logback</groupId>
                      <artifactId>logback-classic</artifactId>
                      <scope>runtime</scope>
+		             <exclusions>
+		                <!-- circular dependency -->
+		                <exclusion>
+		                    <groupId>org.slf4j</groupId>
+            			    <artifactId>slf4j-api</artifactId>
+		                </exclusion>
+		             </exclusions>
                  </dependency>
                  <dependency>
                      <groupId>ch.qos.logback</groupId>
@@ -846,6 +878,13 @@
                      <groupId>org.slf4j</groupId>
                      <artifactId>slf4j-log4j12</artifactId>
                      <scope>runtime</scope>
+		             <exclusions>
+		                <!-- circular dependency -->
+		                <exclusion>
+		                    <groupId>org.slf4j</groupId>
+            			    <artifactId>slf4j-api</artifactId>
+		                </exclusion>
+		             </exclusions>
                  </dependency>
                  <dependency>
                      <groupId>log4j</groupId>
