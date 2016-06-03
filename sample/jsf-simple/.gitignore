@@ -78,6 +78,7 @@ target/
 
 # Checkstyle
 .checkstyle
+.pmd
 
 # Node.js
 
