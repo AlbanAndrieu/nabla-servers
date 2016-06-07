@@ -82,7 +82,7 @@
 	                <type>pom</type>
 	                <scope>import</scope>
 	            </dependency>
-	
+
 	            <!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
 	            <dependency>
 	                <groupId>org.jboss.arquillian</groupId>
@@ -91,7 +91,7 @@
 	                <type>pom</type>
 	                <scope>import</scope>
 	            </dependency>
-            
+
 			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
 				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
 				of artifacts. We use this here so that we always get the correct versions
@@ -627,61 +627,6 @@
 			    </dependencies>
 			</plugin>
 		</plugins>
-
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>${lifecycle.mapping.version}</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.codehaus.mojo</groupId>
-										<artifactId>build-helper-maven-plugin</artifactId>
-										<versionRange>[${maven.build.helper.plugin.version},)</versionRange>
-										<goals>
-											<goal>add-source</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>com.googlecode.maven-java-formatter-plugin</groupId>
-										<artifactId>maven-java-formatter-plugin</artifactId>
-										<versionRange>[${maven.java.formatter.plugin.version},)</versionRange>
-										<goals>
-											<goal>format</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.codehaus.mojo</groupId>
-										<artifactId>gwt-maven-plugin</artifactId>
-										<versionRange>[${maven.gwt.plugin.version},)</versionRange>
-										<goals>
-											<goal>resources</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<execute />
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 	</build>
 
 	<profiles>
