@@ -92,6 +92,7 @@
                                         <artifactId>cargo-maven2-plugin</artifactId>
                                         <version>${maven.cargo.maven2.plugin.version}</version>
                                         <configuration>
+						<skip>${maven.test.skip}</skip>
                                                 <!--
                                                 When Cargo starts the container, the following tag instructs it to
                                                 wait for you to kill the session with Crtl-C (when true)
