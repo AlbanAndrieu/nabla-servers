@@ -26,4 +26,3 @@ The phone data used by the application is scraped from a Google search page.
 - ScrapeData.js: Run this script using node.js to access the web page containing the phone data and
   copy the data into the `app/phones` folder.
 - **format-json.sh**: Run this script to reformat the JSON data files so they are more readable.
-

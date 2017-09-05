@@ -20,7 +20,7 @@ import org.jboss.errai.bus.server.annotations.Service;
 /**
  * CDI service that can be called from either the client side (via Errai RPC) or
  * the server side.
- * 
+ *
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */

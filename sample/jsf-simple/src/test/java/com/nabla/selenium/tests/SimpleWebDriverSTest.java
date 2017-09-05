@@ -20,9 +20,9 @@ import org.slf4j.LoggerFactory;
 
 public class SimpleWebDriverSTest
 {
-	
+
     private static final transient Logger LOGGER = LoggerFactory.getLogger(SimpleWebDriverSTest.class);
-    
+
     public static final String         FORM_ID              = "hello-form";
     public static final String         SUBMIT_BUTTON_ID     = FORM_ID + ":submit-text";
     public static final String         INPUT_TEXT_ID        = FORM_ID + ":input-text";
@@ -67,7 +67,7 @@ public class SimpleWebDriverSTest
     {
         Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
     }
-    
+
     public static void close()
     {
         if (Thread.currentThread() != CLOSE_THREAD)
@@ -76,12 +76,12 @@ public class SimpleWebDriverSTest
         }
         // super.close();
     }
-    
+
     @BeforeClass
     public static void setUp() throws Exception
     {
-    	
-        WindowsUtils.tryToKillByName("firefox.exe");        
+
+        WindowsUtils.tryToKillByName("firefox.exe");
 
         BASE_URL = System.getProperty("webdriver.base.url");
 
@@ -108,7 +108,7 @@ public class SimpleWebDriverSTest
             System.out.println("Use default webdriver.firefox.bin");
             FIREFOX_BIN = DEFAULT_FIREFOXBIN;
         }
-        System.setProperty("webdriver.firefox.bin", FIREFOX_BIN);        
+        System.setProperty("webdriver.firefox.bin", FIREFOX_BIN);
         System.out.println("webdriver.firefox.bin is : " + FIREFOX_BIN + "\n");
         // ProfilesIni allProfiles = new ProfilesIni();
         // FirefoxProfile profile = allProfiles.getProfile("Selenium");
@@ -151,12 +151,12 @@ public class SimpleWebDriverSTest
         	//CAPABILITIES.setJavascriptEnabled(true);
 
         	//SimpleWebDriverSTest.REAL_DRIVER = new ChromeDriver(CAPABILITIES);
-            
+
         	SimpleWebDriverSTest.REAL_DRIVER = new ChromeDriver();
         }
         return SimpleWebDriverSTest.REAL_DRIVER;
     }
-    
+
     /*
      * @Before
      * public void homePageRefresh() throws IOException
@@ -195,10 +195,10 @@ public class SimpleWebDriverSTest
         getCurrentDriver().findElement(By.name(SUBMIT_BUTTON_ID)).click();
 
         Thread.sleep(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT); // 30 s
-        
+
         assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", getCurrentDriver().findElement(By.cssSelector("h3")).getText());
         assertEquals("Welcome Test me !!!", getCurrentDriver().findElement(By.cssSelector("h4")).getText());
-        
+
     }
 
     @AfterClass

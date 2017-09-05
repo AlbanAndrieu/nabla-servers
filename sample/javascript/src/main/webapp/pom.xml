@@ -19,10 +19,10 @@
 		<sonar.jdbc.username>root</sonar.jdbc.username>
 		<sonar.jdbc.password>sonar123</sonar.jdbc.password>
 		<sonar.jdbc.url>jdbc:mysql://10.22.11.40:3306/sonarAdonis</sonar.jdbc.url>
-		<sonar.jdbc.driverClassName>com.mysql.jdbc.Driver</sonar.jdbc.driverClassName>  
-		             
-				
-		
+		<sonar.jdbc.driverClassName>com.mysql.jdbc.Driver</sonar.jdbc.driverClassName>
+
+
+
         <sonar.language>js</sonar.language>
         <sonar.exclusions>${basedir}/libs/**</sonar.exclusions>
         <sonar.coverage.exclusion>${basedir}/js/src/header.js</sonar.coverage.exclusion>
@@ -33,7 +33,7 @@
 	<build>
         <sourceDirectory>js</sourceDirectory>
         <testSourceDirectory>test</testSourceDirectory>
-        
+
         <plugins>
             <plugin> <!-- "profile" fro Sonar purpose -->
                 <groupId>com.kelveden</groupId>
@@ -54,7 +54,7 @@
                     <autoWatch>false</autoWatch>
                 </configuration>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
@@ -94,12 +94,12 @@
                                         <include name="lcov.info" />
                                     </fileset>
                                 </replaceregexp>
-                                
+
                             </target>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>  			
+            </plugin>
 		</plugins>
 	</build>
 

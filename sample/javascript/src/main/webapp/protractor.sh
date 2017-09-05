@@ -4,7 +4,7 @@ npm install
 
 bower install
 
-echo ">>> Starting webdriver-manager ......."  
+echo ">>> Starting webdriver-manager ......."
 
 # start selenium
 #./node_modules/protractor/bin/webdriver-manager start > /dev/null 2>&1 &
@@ -21,8 +21,8 @@ if [ -n "$process_id" ]; then
 	echo ">>> Running protractor tests"
 	#protractor protractor-jenkins-e2e.conf.js
 	#protractor protractor-e2e.conf.js
-	grunt protractor:e2e 
-	
+	grunt protractor:e2e
+
 fi
 
 echo ">>> Stoping webdriver-manager"

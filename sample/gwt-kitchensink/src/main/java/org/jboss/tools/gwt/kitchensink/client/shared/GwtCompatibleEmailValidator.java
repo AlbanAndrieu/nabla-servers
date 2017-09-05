@@ -9,7 +9,7 @@ import com.google.gwt.regexp.shared.RegExp;
  * Implements the same validation semantics as the Hibernate email validator,
  * but uses the GWT regular expressions API so the validation can succeed on the
  * client as well as the server.
- * 
+ *
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */

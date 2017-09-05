@@ -14,13 +14,13 @@ var baseDir = __dirname + '/../app/phones/';
 var phones = [];
 
 function boolean (text) {
-  return /true/i.test(text);  
+  return /true/i.test(text);
 }
 
 agent.addListener('next', function (error, agent) {
   var htmlPage = agent.body.replace('</head>', '</head><body>').
                             replace(/<script[\s\S]*?<\/script>/gi, '');
-//  console.log(htmlPage);                            
+//  console.log(htmlPage);
   var window = jsdom.jsdom(htmlPage).createWindow();
   jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.4.2.min.js', function (window, jquery) {
     var body = jquery('body');
@@ -91,7 +91,7 @@ agent.addListener('next', function (error, agent) {
         var phone = {};
         phone.id = url.split(/\//).pop();
         phone.age = age++;
-        phone.imageUrl = 'http://google.com' + 
+        phone.imageUrl = 'http://google.com' +
           jquery(this).find('img.phone').attr('src');
         phone.snippet = jquery(this).find('.description').text().trim();
         phone.name = jquery(this).find('strong').text().trim();

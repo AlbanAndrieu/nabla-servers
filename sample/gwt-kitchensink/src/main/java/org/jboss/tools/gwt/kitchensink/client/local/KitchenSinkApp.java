@@ -21,7 +21,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 /**
  * Entry point for the Errai Kitchen Sink application. The {@code @EntryPoint} annotation indicates to the Errai framework that this class should be
  * instantiated inside the web browser when the web page is first loaded.
- * 
+ *
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
@@ -67,7 +67,7 @@ public class KitchenSinkApp
     /**
      * Responds to the CDI event that's fired every time a new member is added to
      * the database.
-     * 
+     *
      * @param newMember The member that was just added to the database.
      */
     public void onMemberAdded(@Observes @New Member newMember)

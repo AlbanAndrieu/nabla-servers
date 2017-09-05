@@ -256,7 +256,7 @@
                 <version>${jsf.impl.version}</version>
                 <scope>${scope.tomcat.only.type}</scope>
         </dependency>
-                                
+
         <!-- Import the JSF impl, to allow for application debugging -->
         <dependency>
             <groupId>com.sun.faces</groupId>

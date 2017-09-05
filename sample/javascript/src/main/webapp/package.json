@@ -5,7 +5,7 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-rev": "~0.1.0",
-    "grunt-open": "~0.2.0",    
+    "grunt-open": "~0.2.0",
     "less": "*",
     "grunt-concurrent": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
@@ -29,7 +29,7 @@
     "karma-jasmine": "*",
     "karma-phantomjs-launcher": "*",
     "grunt-connect-pushstate": "*",
-    "phantomjs": "*",    
+    "phantomjs": "*",
     "karma": "*",
     "grunt-modernizr": "~0.4.1",
     "protractor": "~0.20.1",

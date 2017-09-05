@@ -208,6 +208,3 @@
 
 window.slidfast = slidfast;
 })(window,document);
-
-
-

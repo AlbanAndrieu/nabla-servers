@@ -47,7 +47,7 @@ import com.google.gwt.user.client.ui.Widget;
  * large application, read up on the <a
  * href="http://code.google.com/webtoolkit/doc/latest/DevGuideMvpActivitiesAndPlaces.html">MVP pattern</a>, which is
  * recommended for larger apps.
- * 
+ *
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
@@ -149,7 +149,7 @@ public class KitchenSinkClient extends Composite
     /**
      * Validates the new member data and sends it to the server if validation
      * passes. Displays validation messages if validation fails.
-     * 
+     *
      * @param event The click event (ignored)
      */
     @UiHandler("registerButton")
@@ -215,7 +215,7 @@ public class KitchenSinkClient extends Composite
     /**
      * Adds the given member into the local Registered Members CellTable. Does not
      * communicate with the server.
-     * 
+     *
      * @param m
      * The member to add to the CellTable being displayed in the web
      * page.
@@ -230,7 +230,7 @@ public class KitchenSinkClient extends Composite
 
     /**
      * Replaces the displayed list of members with the given list of members.
-     * 
+     *
      * @param members The list of members to display on the web page. Not null.
      */
     public void setDisplayedMembers(List<Member> members)

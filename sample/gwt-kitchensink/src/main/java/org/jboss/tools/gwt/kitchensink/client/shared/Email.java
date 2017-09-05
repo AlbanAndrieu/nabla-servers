@@ -15,7 +15,7 @@ import javax.validation.Payload;
  * An Email validator with the same semantics as the built-in Hibernate email
  * validator, but uses a validation implementation that works on both the client
  * side and the server side.
- * 
+ *
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
