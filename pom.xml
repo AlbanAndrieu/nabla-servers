@@ -17,10 +17,10 @@
         <url>http://maven.nabla.mobi/dependencies/customs/main/databases/servers</url>
 
         <scm>
-                        <connection>scm:git:git://github.com/AlbanAndrieu/nabla-servers.git</connection>
-                        <developerConnection>scm:git:git@github.com:AlbanAndrieu/nabla-servers.git</developerConnection>
-                        <url>https://github.com/AlbanAndrieu/nabla-servers</url>
-                        <tag>HEAD</tag>
+			<connection>scm:git:ssh://git@github.com/AlbanAndrieu/nabla-servers.git</connection>
+			<developerConnection>scm:git:ssh://git@github.com/AlbanAndrieu/nabla-servers.git</developerConnection>
+			<url>https://github.com/AlbanAndrieu/nabla-servers</url>
+			<tag>HEAD</tag>
         </scm>
 
                 <ciManagement>

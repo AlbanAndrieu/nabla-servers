@@ -32,9 +32,9 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 	private static final String SELENIUM_HUB_URL = "http://home.nabla.mobi:4444/wd/hub";
 
 	private static final transient Logger LOGGER = LoggerFactory.getLogger(SimpleRemoteWebDriverSTest.class);
-    
+
 	public static final long           PAGE_TO_LOAD_TIMEOUT = 30000;
-    
+
     private static WebDriver           REAL_DRIVER;
     private static String              BASE_URL           = SimpleWebDriverSTest.DEFAULT_URL;
     private static String              CHROME_DRIVER      = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
@@ -135,7 +135,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
     {
         Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
     }
-    
+
     public static void close()
     {
         if (Thread.currentThread() != CLOSE_THREAD)
@@ -144,7 +144,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         }
         // super.close();
     }
-    
+
     @BeforeClass
     public static void setUp() throws Exception
     {
@@ -165,7 +165,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
             System.out.println("Use default webdriver.base.url");
             CHROME_DRIVER = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
         }
-        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER);        
+        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER);
         System.out.println("webdriver.chrome.driver is : " + CHROME_DRIVER + "\n");
 
         // System.setProperty("webdriver.safari.noinstall", "true");
@@ -175,7 +175,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
             System.out.println("Use default webdriver.firefox.bin");
             FIREFOX_BIN = SimpleWebDriverSTest.DEFAULT_FIREFOXBIN;
         }
-        System.setProperty("webdriver.firefox.bin", FIREFOX_BIN);        
+        System.setProperty("webdriver.firefox.bin", FIREFOX_BIN);
         System.out.println("webdriver.firefox.bin is : " + FIREFOX_BIN + "\n");
         // System.setProperty("webdriver.firefox.bin", "C:\\Program Files\\Mozilla Firefox\\firefox");
 
@@ -226,7 +226,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
      * // driver.get(propertyKeysLoader("login.base.url"));
      * }
      */
-    private synchronized static WebDriver getCurrentDriver() 
+    private synchronized static WebDriver getCurrentDriver()
     {
         if (SimpleRemoteWebDriverSTest.REAL_DRIVER == null)
         {
@@ -274,13 +274,13 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 			} catch (MalformedURLException e) {
 				SimpleRemoteWebDriverSTest.LOGGER.info("Wrong selenium URL : {}", SELENIUM_HUB_URL);
 			}
-            
+
         	SimpleRemoteWebDriverSTest.REAL_DRIVER = new ChromeDriver();
         }
-        
+
         return SimpleRemoteWebDriverSTest.REAL_DRIVER;
     }
-    
+
     @Test
     public void testSimpleS() throws Exception
     {
@@ -308,12 +308,12 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         getCurrentDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         getCurrentDriver().findElement(By.name(SimpleWebDriverSTest.SUBMIT_BUTTON_ID)).click();
-        
+
         Thread.sleep(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT); // 30 s
-        
+
         assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", getCurrentDriver().findElement(By.cssSelector("h3")).getText());
         assertEquals("Welcome Test me !!!", getCurrentDriver().findElement(By.cssSelector("h4")).getText());
-        
+
     }
 
     @AfterClass

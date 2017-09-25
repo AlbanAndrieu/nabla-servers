@@ -1,6 +1,6 @@
 cls
 
-call setenv.bat 
+call setenv.bat
 
 REM use webdriver.chrome instead of webdriver.chrome.driver
 REM OK call mvn clean verify -Psample -Dserver=tomcat7x -Ddatabase=derby -Dwebdriver.chrome.driver=/var/lib/chromedriver -Dwebdriver.base.url=http://home.nabla.mobi:8280 > install.log 2>&1

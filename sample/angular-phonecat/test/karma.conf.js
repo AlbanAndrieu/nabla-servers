@@ -55,14 +55,14 @@ module.exports = function(config){
 	// - PhantomJS
 	// - IE (only Windows)
 	browsers: ['PhantomJS'],
-    
+
 	// If browser does not capture in given timeout [ms], kill it
 	captureTimeout: 5000,
 
 	// Continuous Integration mode
 	// if true, it capture browsers, run tests and exit
 	singleRun: true,
-	
+
     junitReporter: {
       outputFile: 'target/surefire-reports/TEST-karma.xml',
       suite: 'unit'
@@ -71,19 +71,19 @@ module.exports = function(config){
 	preprocessors: {
       // source files, that you wanna generate coverage for
       // do not include tests or libraries
-      'app/*.html': ['html2js'],			      
+      'app/*.html': ['html2js'],
       // (these files will be instrumented by Istanbul)
       'app/js/*.js': ['coverage']
     },
-	
+
 	// optionally, configure the reporter
 	//coverageReporter: {
 	//	type : 'html',
 	//	dir : 'coverage/'
-	//}            
+	//}
 	coverageReporter: {
 		type: 'lcov',
 		dir: 'target/karma-coverage'
-	}			
+	}
   });
 };

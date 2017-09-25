@@ -15,7 +15,7 @@ import com.google.gwt.validation.client.impl.AbstractGwtValidator;
  * GWT's Bean Validation implementation needs to be told up front which classes
  * can be validated. In a future version of Errai, we will discover beans with
  * validation annotations, making a factory like this one optional.
- * 
+ *
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
