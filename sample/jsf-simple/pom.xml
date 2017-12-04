@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-	<parent>
-		<groupId>com.nabla.project.servers.sample</groupId>
-		<artifactId>sample</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
-	</parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>sample</artifactId>
+		<groupId>com.nabla.project.servers.sample</groupId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
 	<!--<groupId>com.nabla.project.servers.sample</groupId> -->
 	<artifactId>jsf-simple</artifactId>
 	<packaging>war</packaging>
 	<!--<version>1.0</version> -->
 	<name>Java Server Faces Maven Webapp</name>
 
-
-    <properties>
-		<!-- for jmeter -->
-		<performancetest.webservice.path>/welcome</performancetest.webservice.path>
-		<jetty9.version>9.3.3.v20150827</jetty9.version>
+	<properties>
 		<!--
 		<jsf.api.version>2.1</jsf.api.version>
-        <jsf.impl.version>2.1</jsf.impl.version>
+        	<jsf.impl.version>2.1</jsf.impl.version>
 		<jsf.api.version>1.2_15</jsf.api.version>
-        <jsf.impl.version>1.2_15</jsf.impl.version>
+       		<jsf.impl.version>1.2_15</jsf.impl.version>
 		<sun.jsf.api.version>2.1.7</sun.jsf.api.version>
 		<sun.jsf.impl.version>2.1.7</sun.jsf.impl.version>
 		<el.api.version>2.2.1-b04</el.api.version>
@@ -33,7 +28,11 @@
 		<!--<cargo.jetty.jmx.activation>-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=10088 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false</cargo.jetty.jmx.activation>-->
 		<cargo.jetty.jmx.activation></cargo.jetty.jmx.activation>
 		<cargo.jmx.activation></cargo.jmx.activation>
-    </properties>
+		<guava.version>21.0</guava.version>
+		<jetty9.version>9.3.3.v20150827</jetty9.version>
+		<!-- for jmeter -->
+		<performancetest.webservice.path>/welcome</performancetest.webservice.path>
+	</properties>
 
 	<dependencyManagement>
 		<dependencies>
@@ -57,6 +56,73 @@
 	</dependencyManagement>
 
 	<dependencies>
+
+		<!-- http://repo1.maven.org/maven -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${jsp.api.version}</version>
+		</dependency>
+
+		<!-- Tomcat 6 need this -->
+		<dependency>
+			<groupId>com.sun.el</groupId>
+			<artifactId>el-ri</artifactId>
+			<version>${el.ri.version}</version>
+		</dependency>
+
+		<!-- TODO must be needed later
+		<dependency>
+			<groupId>org.jboss.el</groupId>
+			<artifactId>jboss-el</artifactId>
+			<version>${jboss.el.version}</version>
+			<scope>${scope.type}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
+			<version>${el.api.version}</version>
+			<scope>${scope.type}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mvel</groupId>
+			<artifactId>mvel2</artifactId>
+			<version>${org.mvel.mvel2.version}</version>
+			<scope>${scope.type}</scope>
+		</dependency>
+		-->
+		<!--
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<exclusions>
+				<!-- circular dependency -->
+				<exclusion>
+					<artifactId>logback-classic</artifactId>
+					<groupId>ch.qos.logback</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 		<!-- First declare the APIs we depend on and need for compilation. All
 			of them are provided by JBoss AS 7 -->
@@ -130,79 +196,12 @@
 		</dependency>
 		-->
 
-        	<!-- Import the JSF API, we use provided scope as the API is included
+		<!-- Import the JSF API, we use provided scope as the API is included
         	    in JBoss AS 7 -->
-        	<dependency>
-        	    <groupId>org.jboss.spec.javax.faces</groupId>
-        	    <artifactId>jboss-jsf-api_2.1_spec</artifactId>
-        	    <scope>provided</scope>
-        	</dependency>
-
-		<!-- for cannot access javax.faces.application.FacesMessage -->
-		<!-- see in core project it is provided (needed for jboss 7) -->
 		<dependency>
-			<groupId>javax.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-			<version>${jsf.api.version}</version>
-			<scope>${scope.tomcat.never.type}</scope>
-			<!-- <scope>compile</scope> compile needed for jetty -->
-		</dependency>
-
-		<!-- TODO remove not needed
-                <dependency>
-                        <groupId>javax.faces</groupId>
-                        <artifactId>jsf-impl</artifactId>
-                        <version>${jsf.impl.version}</version>
-                        <scope>${scope.type}</scope>
-                </dependency>
-		-->
-
-		<!-- TODO remove
-    		<dependency>
-        		<groupId>org.primefaces</groupId>
-        		<artifactId>primefaces</artifactId>
-        		<version>4.0</version>
-    		</dependency>
-		 -->
-
-    		<!-- Javaee API -->
-		<!-- TODO remove
-		<dependency>
-    			<groupId>javax</groupId>
-    			<artifactId>javaee-api</artifactId>
-    			<version>${javax.javaee.api.version}</version>
-			<scope>${scope.type}</scope>
-		</dependency>
-		 recommended way is to include
-  		<dependency>
-            		<groupId>javax.faces</groupId>
-            		<artifactId>javax.faces-api</artifactId>
-            		<version>2.1</version>
-	    		<scope>${scope.type}</scope>
-  		</dependency>
-		-->
-		<!-- http://download.java.net/maven/2 needed for tomcat only -->
-		<!-- http://www.mkyong.com/jsf2/jsf-2-0-hello-world-example/ -->
-		<!-- replaced by javax.faces for other except tomcat -->
-		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-			<version>${sun.jsf.version}</version>
-			<scope>${scope.tomcat.only.type}</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-impl</artifactId>
-			<version>${sun.jsf.version}</version>
-			<scope>${scope.tomcat.only.type}</scope>
-		</dependency>
-
-
-		<!-- http://repo1.maven.org/maven -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>${jstl.version}</version>
+			<groupId>org.jboss.spec.javax.faces</groupId>
+			<artifactId>jboss-jsf-api_2.1_spec</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<!--
@@ -216,68 +215,9 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${javax.servlet.api.version}</version>
-			<scope>provided</scope> <!-- javax.servlet-api-3.0.1.jar Offending class javax/servlet/Servlet.class  in Tomcat -->
+			<scope>provided</scope>
+			<!-- javax.servlet-api-3.0.1.jar Offending class javax/servlet/Servlet.class  in Tomcat -->
 		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>${jsp.api.version}</version>
-		</dependency>
-
-		<!-- Tomcat 6 need this -->
-		<dependency>
-			<groupId>com.sun.el</groupId>
-			<artifactId>el-ri</artifactId>
-			<version>${el.ri.version}</version>
-		</dependency>
-
-		<!-- TODO must be needed later
-		<dependency>
-			<groupId>org.jboss.el</groupId>
-			<artifactId>jboss-el</artifactId>
-			<version>${jboss.el.version}</version>
-			<scope>${scope.type}</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>el-api</artifactId>
-			<version>${el.api.version}</version>
-			<scope>${scope.type}</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.mvel</groupId>
-			<artifactId>mvel2</artifactId>
-			<version>${org.mvel.mvel2.version}</version>
-			<scope>${scope.type}</scope>
-		</dependency>
-		-->
-        <!--
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        -->
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
-		</dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <exclusions>
-                <!-- circular dependency -->
-                <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
 
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
@@ -382,6 +322,65 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- for cannot access javax.faces.application.FacesMessage -->
+		<!-- see in core project it is provided (needed for jboss 7) -->
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>${jsf.api.version}</version>
+			<scope>${scope.tomcat.never.type}</scope>
+			<!-- <scope>compile</scope> compile needed for jetty -->
+		</dependency>
+
+		<!-- TODO remove not needed
+                <dependency>
+                        <groupId>javax.faces</groupId>
+                        <artifactId>jsf-impl</artifactId>
+                        <version>${jsf.impl.version}</version>
+                        <scope>${scope.type}</scope>
+                </dependency>
+		-->
+
+		<!-- TODO remove
+    		<dependency>
+        		<groupId>org.primefaces</groupId>
+        		<artifactId>primefaces</artifactId>
+        		<version>4.0</version>
+    		</dependency>
+		 -->
+
+		<!-- Javaee API -->
+		<!-- TODO remove
+		<dependency>
+    			<groupId>javax</groupId>
+    			<artifactId>javaee-api</artifactId>
+    			<version>${javax.javaee.api.version}</version>
+			<scope>${scope.type}</scope>
+		</dependency>
+		 recommended way is to include
+  		<dependency>
+            		<groupId>javax.faces</groupId>
+            		<artifactId>javax.faces-api</artifactId>
+            		<version>2.1</version>
+	    		<scope>${scope.type}</scope>
+  		</dependency>
+		-->
+		<!-- http://download.java.net/maven/2 needed for tomcat only -->
+		<!-- http://www.mkyong.com/jsf2/jsf-2-0-hello-world-example/ -->
+		<!-- replaced by javax.faces for other except tomcat -->
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>${sun.jsf.version}</version>
+			<scope>${scope.tomcat.only.type}</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>${sun.jsf.version}</version>
+			<scope>${scope.tomcat.only.type}</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -401,7 +400,7 @@
 					<startURL>http://${cargo.host}:${cargo.port}</startURL>
 				</configuration>
 				-->
-				<!--
+			<!--
 				<executions>
 					<execution>
 						<id>xvfb</id>
@@ -489,7 +488,7 @@
 			</plugin>
 			-->
 
-<!--
+			<!--
 <plugin>
   <groupId>org.apache.maven.plugins</groupId>
   <artifactId>maven-dependency-plugin</artifactId>
@@ -521,10 +520,47 @@
 				<groupId>org.codehaus.cargo</groupId>
 				<artifactId>cargo-maven2-plugin</artifactId>
 				<version>${maven.cargo.maven2.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>start-container-overrided</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<timeout>240000</timeout>
+							<!--
+							<configuration>
+								<properties>
+									<cargo.jvmargs>${jacoco.agent.it.arg}</cargo.jvmargs>
+								</properties>
+							</configuration>
+							-->
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-container-overrided</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+						<configuration>
+							<timeout>60000</timeout>
+							<configuration>
+								<properties>
+									<cargo.jmx.activation></cargo.jmx.activation>
+									<cargo.start.jvmargs></cargo.start.jvmargs>
+									<cargo.jvmargs></cargo.jvmargs>
+								</properties>
+							</configuration>
+						</configuration>
+					</execution>
+				</executions>
 				<configuration>
 					<wait>${cargo.wait}</wait>
 					<container>
-						<timeout>300000</timeout> <!-- 5 minutes -->
+						<timeout>300000</timeout>
+						<!-- 5 minutes -->
 						<!--<containerId>${cargo.container}</containerId> -->
 						<!--<type>${cargo.container.type}</type> -->
 						<dependencies>
@@ -577,14 +613,14 @@
 							</configfile>
 						</configfiles>
 						<!-- https://codehaus-cargo.github.io/cargo/Maven2+Plugin+Reference+Guide.html#Maven2PluginReferenceGuide-file -->
-                        <files>
+						<files>
 							<configfile>
 								<file>${project.basedir}/src/main/config/demo-base/keystore</file>
 								<todir>etc</todir>
 								<configfile>false</configfile>
 								<overwrite>true</overwrite>
 							</configfile>
-                        </files>
+						</files>
 					</configuration>
 					<deployables>
 						<deployable>
@@ -599,42 +635,6 @@
 						</deployable>
 					</deployables>
 				</configuration>
-				<executions>
-					<execution>
-						<id>start-container-overrided</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-						<configuration>
-							<timeout>240000</timeout>
-							<!--
-							<configuration>
-								<properties>
-									<cargo.jvmargs>${jacoco.agent.it.arg}</cargo.jvmargs>
-								</properties>
-							</configuration>
-							-->
-						</configuration>
-					</execution>
-					<execution>
-						<id>stop-container-overrided</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-						<configuration>
-							<timeout>60000</timeout>
-							<configuration>
-								<properties>
-									<cargo.jmx.activation></cargo.jmx.activation>
-									<cargo.start.jvmargs></cargo.start.jvmargs>
-									<cargo.jvmargs><![CDATA[]]></cargo.jvmargs>
-								</properties>
-							</configuration>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<!--
 			<plugin>
@@ -666,16 +666,16 @@
 			</plugin>
 
 			<plugin>
-			<!-- Allow this web application to be started with the command : 'mvn jetty:run-war -Psample -Dserver=jetty9x -Ddatabase=derby -Djetty.port=9090' -->
+				<!-- Allow this web application to be started with the command : 'mvn jetty:run-war -Psample -Dserver=jetty9x -Ddatabase=derby -Djetty.port=9090' -->
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				 <version>${maven.jetty.eclipse.plugin.version}</version>
+				<version>${maven.jetty.eclipse.plugin.version}</version>
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
-                    <webApp>
-                        <contextPath>/welcome</contextPath>
-                    </webApp>
-                    <useTestClasspath>true</useTestClasspath>
+					<webApp>
+						<contextPath>/welcome</contextPath>
+					</webApp>
+					<useTestClasspath>true</useTestClasspath>
 					<useTestClasspath>true</useTestClasspath>
 					<httpConnector>
 						<!--host>localhost</host -->
@@ -684,7 +684,7 @@
 					<stopPort>${jetty.stop.port}</stopPort>
 					<stopKey>STOP</stopKey>
 					<stopWait>10</stopWait>
-			<!--
+					<!--
 			<systemProperties>
 				<systemProperty>
 					<key>nabla.config</key>
@@ -741,25 +741,6 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>${maven.tomcat7.plugin.version}</version>
-				<configuration>
-					<!-- http port -->
-					<port>${tomcat.port}</port>
-					<path>/welcome</path>
-					<!--<contextFile>${basedir}/src/main/webapp/META-INF/context.xml</contextFile> -->
-					<addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
-	        <!--
-	        <systemProperties>
-	            <java.security.auth.login.config>${basedir}/conf/jaas.config</java.security.auth.login.config>
-	        </systemProperties>
-	        -->
-					<url>${deploy.url}</url>
-					<username>${cargo.remote.user}</username>
-					<password>${cargo.remote.password}</password>
-					<addContextWarDependencies>true</addContextWarDependencies>
-					<addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
-					<!--<configurationDir>${basedir}</configurationDir>-->
-					<server>nabla-tomcat</server>
-				</configuration>
 				<dependencies>
 					<dependency>
 						<groupId>com.nabla.project.servers.sample</groupId>
@@ -774,32 +755,50 @@
 						<scope>runtime</scope>
 					</dependency>
 				</dependencies>
+				<configuration>
+					<!-- http port -->
+					<port>${tomcat.port}</port>
+					<path>/welcome</path>
+					<!--<contextFile>${basedir}/src/main/webapp/META-INF/context.xml</contextFile> -->
+					<addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+					<!--
+	        <systemProperties>
+	            <java.security.auth.login.config>${basedir}/conf/jaas.config</java.security.auth.login.config>
+	        </systemProperties>
+	        -->
+					<url>${deploy.url}</url>
+					<username>${cargo.remote.user}</username>
+					<password>${cargo.remote.password}</password>
+					<addContextWarDependencies>true</addContextWarDependencies>
+					<addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+					<!--<configurationDir>${basedir}</configurationDir>-->
+					<server>nabla-tomcat</server>
+				</configuration>
 			</plugin>
-	    		<plugin>
-	    			<groupId>com.atlassian.maven.plugins</groupId>
-	    			<artifactId>maven-clover2-plugin</artifactId>
-	    			<configuration>
-	    				<skip>true</skip>
-	    			</configuration>
-	    		</plugin>
+			<plugin>
+				<groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-clover2-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
-    <profiles>
+	<profiles>
 		<profile>
-            <id>jmeter</id>
-		    <activation>
-		    		<property>
-		    				<name>profile.activation</name>
-		    		</property>
-		    </activation>
-            <build>
-                <plugins>
+			<id>jmeter</id>
+			<activation>
+				<property>
+					<name>profile.activation</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
 					<plugin>
 						<groupId>com.lazerycode.jmeter</groupId>
 						<artifactId>jmeter-maven-plugin</artifactId>
 						<version>${maven.jmeter.plugin.version}</version>
-						<inherited>true</inherited>
 						<executions>
 							<execution>
 								<id>jmeter-tests</id>
@@ -809,6 +808,7 @@
 								</goals>
 							</execution>
 						</executions>
+						<inherited>true</inherited>
 					</plugin>
 					<!--
 					<plugin>
@@ -831,68 +831,68 @@
 						<groupId>de.codecentric</groupId>
 						<artifactId>jmeter-graph-maven-plugin</artifactId>
 						<version>${maven.jmeter.graph.plugin.version}</version>
-						<inherited>true</inherited>
 						<executions>
-								<execution>
-									<id>create-graph-threads</id>
-									<phase>integration-test</phase>
-									<goals>
-										<goal>create-graph</goal>
-									</goals>
-								</execution>
+							<execution>
+								<id>create-graph-threads</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>create-graph</goal>
+								</goals>
+							</execution>
 						</executions>
+						<inherited>true</inherited>
 					</plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-             <id>logback</id>
-             <dependencies>
-                 <dependency>
-                     <groupId>ch.qos.logback</groupId>
-                     <artifactId>logback-classic</artifactId>
-                     <scope>runtime</scope>
-		             <exclusions>
-		                <!-- circular dependency -->
-		                <exclusion>
-		                    <groupId>org.slf4j</groupId>
-            			    <artifactId>slf4j-api</artifactId>
-		                </exclusion>
-		             </exclusions>
-                 </dependency>
-                 <dependency>
-                     <groupId>ch.qos.logback</groupId>
-                     <artifactId>logback-core</artifactId>
-                     <scope>runtime</scope>
-                 </dependency>
-             </dependencies>
-         </profile>
-         <profile>
-             <id>log4j</id>
-             <activation>
-			     <property>
-			 	     <name>!profile.activation</name>
-			 	 </property>
-		     </activation>
-             <dependencies>
-                 <dependency>
-                     <groupId>org.slf4j</groupId>
-                     <artifactId>slf4j-log4j12</artifactId>
-                     <scope>runtime</scope>
-		             <exclusions>
-		                <!-- circular dependency -->
-		                <exclusion>
-		                    <groupId>org.slf4j</groupId>
-            			    <artifactId>slf4j-api</artifactId>
-		                </exclusion>
-		             </exclusions>
-                 </dependency>
-                 <dependency>
-                     <groupId>log4j</groupId>
-                     <artifactId>log4j</artifactId>
-                     <scope>runtime</scope>
-                 </dependency>
-             </dependencies>
-         </profile>
-    </profiles>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>logback</id>
+			<dependencies>
+				<dependency>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-classic</artifactId>
+					<scope>runtime</scope>
+					<exclusions>
+						<!-- circular dependency -->
+						<exclusion>
+							<artifactId>slf4j-api</artifactId>
+							<groupId>org.slf4j</groupId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+				<dependency>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-core</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>log4j</id>
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+					<scope>runtime</scope>
+					<exclusions>
+						<!-- circular dependency -->
+						<exclusion>
+							<artifactId>slf4j-api</artifactId>
+							<groupId>org.slf4j</groupId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+				<dependency>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 </project>

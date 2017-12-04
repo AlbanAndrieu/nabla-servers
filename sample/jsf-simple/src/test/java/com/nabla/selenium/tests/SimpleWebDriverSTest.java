@@ -3,17 +3,19 @@ package com.nabla.selenium.tests;
 import static org.junit.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.os.WindowsUtils;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,7 +83,7 @@ public class SimpleWebDriverSTest
     public static void setUp() throws Exception
     {
 
-        WindowsUtils.tryToKillByName("firefox.exe");
+        //WindowsUtils.tryToKillByName("firefox.exe");
 
         BASE_URL = System.getProperty("webdriver.base.url");
 
@@ -173,23 +175,26 @@ public class SimpleWebDriverSTest
 
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
         assertEquals("JSF 2.0 Hello World Example - hello.xhtml", getCurrentDriver().findElement(By.cssSelector("h3")).getText());
-        getCurrentDriver().findElement(By.name(INPUT_TEXT_ID)).clear();
-        getCurrentDriver().findElement(By.name(INPUT_TEXT_ID)).sendKeys("Test me !!!");
+		getCurrentDriver().findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID)).clear();
+		getCurrentDriver().findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID)).sendKeys("Test me !!!");
 
         // wait for the application to get fully loaded
-        WebElement findOwnerLink = (new WebDriverWait(getCurrentDriver(), 5)).until(new ExpectedCondition<WebElement>()
-        {
-            public WebElement apply(WebDriver d)
-            {
-                // d.get(baseUrl);
-                return d.findElement(By.name(INPUT_TEXT_ID));
-            }
-        });
+        Wait wait = new FluentWait(getCurrentDriver())    
+        	    .withTimeout(30, TimeUnit.SECONDS)    
+        	    .pollingEvery(5, TimeUnit.SECONDS)   
+        	    .ignoring(NoSuchElementException.class);
 
-        findOwnerLink.click();
+		WebElement findOwnerLink = (WebElement) wait.until(new Function() {
+			@Override
+			public Object apply(Object driver) {
+				return ((WebDriver) driver).findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID));
+			}
+		});
 
-        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
-        wait.until(ExpectedConditions.elementToBeClickable(By.name(SUBMIT_BUTTON_ID)));
+		findOwnerLink.click();
+
+		WebDriverWait webDriverWait = new WebDriverWait(getCurrentDriver(), 10);
+		webDriverWait.until(ExpectedConditions.elementToBeClickable(By.name(SUBMIT_BUTTON_ID)));
         getCurrentDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         getCurrentDriver().findElement(By.name(SUBMIT_BUTTON_ID)).click();

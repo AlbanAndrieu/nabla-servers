@@ -5,20 +5,22 @@ import static org.junit.Assert.assertEquals;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 //import com.saucelabs.common.SauceOnDemandAuthentication;
@@ -292,18 +294,19 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         getCurrentDriver().findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID)).sendKeys("Test me !!!");
 
         // wait for the application to get fully loaded
-        WebElement findOwnerLink = (new WebDriverWait(getCurrentDriver(), 5)).until(new ExpectedCondition<WebElement>()
-        {
-            public WebElement apply(WebDriver d)
-            {
-                // d.get(baseUrl);
-                return d.findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID));
-            }
-        });
+		Wait wait = new FluentWait(getCurrentDriver()).withTimeout(30, TimeUnit.SECONDS)
+				.pollingEvery(5, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
+
+		WebElement findOwnerLink = (WebElement) wait.until(new Function() {
+			@Override
+			public Object apply(Object driver) {
+				return ((WebDriver) driver).findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID));
+			}
+		});
 
         findOwnerLink.click();
 
-        WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
+		// WebDriverWait wait = new WebDriverWait(getCurrentDriver(), 10);
         wait.until(ExpectedConditions.elementToBeClickable(By.name(SimpleWebDriverSTest.SUBMIT_BUTTON_ID)));
         getCurrentDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
