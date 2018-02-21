@@ -76,9 +76,10 @@
                         <!-- if you want to start remote debugging session suspended override on
                         command line with -Dcargo.debug.suspend=y -->
                         <cargo.debug.suspend>y</cargo.debug.suspend>
-                        <webdriver.base.url>http://${cargo.host}:${cargo.port}</webdriver.base.url> <!-- default url used by selenium butcan be ovverrided doing mvn clean verify -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.base.url=http://localhost:9090 -->
+                        <cargo.protocol>http</cargo.protocol>
+                        <webdriver.base.url>${cargo.protocol}://${cargo.host}:${cargo.port}</webdriver.base.url> <!-- default url used by selenium butcan be ovverrided doing mvn clean verify -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.base.url=http://localhost:9090 -->
                         <javaagent />
-                        <cargo.jmx.activation></cargo.jmx.activation>
+                        <cargo.jmx.activation></cargo.jmx.activation>                        
                 </properties>
 
         <build>
