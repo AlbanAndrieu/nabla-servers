@@ -40,7 +40,8 @@
 		<!-- if you want to start remote debugging session suspended override on
                         command line with -Dcargo.debug.suspend=y -->
 		<cargo.debug.suspend>y</cargo.debug.suspend>
-		<cargo.eclipse.debug><![CDATA[-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${eclipse.port} -Xnoagent -Djava.compiler=NONE]]></cargo.eclipse.debug>
+		<!--<cargo.eclipse.debug><![CDATA[-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${eclipse.port} -Xnoagent -Djava.compiler=NONE]]></cargo.eclipse.debug>-->
+		<cargo.eclipse.debug></cargo.eclipse.debug>
 		<!-- for jar not needed for tomcat but for other -->
 		<!-- cargo.port must be used by jenkins to overriden using a pool of tcp port -->
 		<cargo.host>localhost</cargo.host>
@@ -1710,9 +1711,9 @@
 				<property>
 					<name>!profile.activation</name>
 					<!--
-                                <name>arquillian</name>
-                                <value>arq-jbossas-managed</value>
-                                -->
+		                        <name>arquillian</name>
+		                        <value>arq-jbossas-managed</value>
+		                        -->
 				</property>
 			</activation>
 			<dependencies>
@@ -1907,6 +1908,13 @@
 		<!-- see https://docs.jboss.org/author/display/ARQ/Jetty+7.0+-+Embedded -->
 		<profile>
 			<id>arq-jetty-embedded</id>
+			<activation>
+				<property>
+					<!--<name>!profile.activation</name>-->
+					<name>arquillian</name>
+					<value>arq-jetty-embedded</value>
+				</property>
+			</activation>
 			<!--
                          <build>
                                 <testResources>
@@ -1938,6 +1946,12 @@
 					<groupId>org.jboss.arquillian.container</groupId>
 					<artifactId>arquillian-jetty-embedded-9</artifactId>
 					<version>${org.jboss.arquillian.jetty.embedded.version}</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-deploy</artifactId>
+					<version>${jetty.version}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
