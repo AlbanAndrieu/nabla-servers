@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<artifactId>sample</artifactId>
 		<groupId>com.nabla.project.servers.sample</groupId>
 		<version>1.0.1-SNAPSHOT</version>
 	</parent>
-
-	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jboss.tools.gwt.kitchensink</groupId>
 	<artifactId>gwt-kitchensink</artifactId>
 	<packaging>war</packaging>
@@ -18,9 +17,16 @@
 	<!-- see https://github.com/tkobayas/example-projects/blob/master/errai-kitchensink-quickstart/pom.xml -->
 
 	<properties>
-	    	<application.id>nabla</application.id>
+		<application.id>nabla</application.id>
 		<!--<datasource>java:/jdbc/${datasource.name}</datasource>-->
 		<database.name>nabla</database.name>
+		<!-- gwt not ready for 1.1.0.Final -->
+		<!--
+		<hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version>
+			<maven.war.plugin.version>2.2</maven.war.plugin.version> <maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
+			<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version> <maven.surefire.plugin.version>2.12</maven.surefire.plugin.version>
+			<maven.jboss.as.plugin.version>7.1.1.Final</maven.jboss.as.plugin.version> -->
+		<hibernate.jpamodelgen.version>4.3.8.Final</hibernate.jpamodelgen.version>
 
 		<!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
 			dependencies from org.jboss.spec will have their version defined by this
@@ -32,18 +38,15 @@
 			repository. -->
 		<!-- <org.jboss.spec.jboss.javaee6.version>3.0.0.Beta1-redhat-1</org.jboss.spec.jboss.javaee6.version> -->
 		<!-- <errai.version>2.0.Beta3</errai.version> <gwt.version>2.4.0</gwt.version>
-			<maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version> <junit.version>4.10</junit.version> -->
-		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version> <!-- TODO check because version is better than main pom -->
-		<validation.api.version>1.0.0.GA</validation.api.version>  <!-- gwt not ready for 1.1.0.Final -->
-		<!--
-		<hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version>
-			<maven.war.plugin.version>2.2</maven.war.plugin.version> <maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
-			<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version> <maven.surefire.plugin.version>2.12</maven.surefire.plugin.version>
-			<maven.jboss.as.plugin.version>7.1.1.Final</maven.jboss.as.plugin.version> -->
-		<hibernate.jpamodelgen.version>4.3.8.Final</hibernate.jpamodelgen.version>
-		<org.mvel.mvel2.version>2.1.Beta8</org.mvel.mvel2.version> <!-- TODO check because version is better than main pom -->
+			<maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version> -->
+		<junit.version>4.10</junit.version>
+		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
+		<!-- TODO check because version is better than main pom -->
 		<!-- TODO remove -->
 		<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>
+		<org.mvel.mvel2.version>2.1.Beta8</org.mvel.mvel2.version>
+		<!-- TODO check because version is better than main pom -->
+		<validation.api.version>1.0.0.GA</validation.api.version>
 		<!-- TODO SEE https://docs.jboss.org/author/display/ARQ/Apache+OpenEJB+3.1+-+Embedded -->
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 
@@ -56,55 +59,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-
-		    <!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
-	             <!-- Override dependency resolver with latest version.
-	             This must go *BEFORE* the Arquillian BOM. -->
-		    <!--  ShrinkWrap  -->
-		    <dependency>
-		    	<groupId>org.jboss.shrinkwrap</groupId>
-		    	<artifactId>shrinkwrap-bom</artifactId>
-		    	<version>${org.jboss.shrinkwrap.bom.version}</version>
-		    	<type>pom</type>
-		    	<scope>import</scope>
-		    </dependency>
-	            <dependency>
-	                <groupId>org.jboss.shrinkwrap.resolver</groupId>
-	                <artifactId>shrinkwrap-resolver-bom</artifactId>
-	                <version>${org.jboss.shrinkwrap.resolver.bom.version}</version>
-	                <type>pom</type>
-	                <scope>import</scope>
-	            </dependency>
-	            <dependency>
-	                <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-	                <artifactId>shrinkwrap-descriptors-bom</artifactId>
-	                <version>${org.jboss.shrinkwrap.descriptors.bom.version}</version>
-	                <type>pom</type>
-	                <scope>import</scope>
-	            </dependency>
-
-	            <!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
-	            <dependency>
-	                <groupId>org.jboss.arquillian</groupId>
-	                <artifactId>arquillian-bom</artifactId>
-	                <version>${org.jboss.arquillian.bom.version}</version>
-	                <type>pom</type>
-	                <scope>import</scope>
-	            </dependency>
-
-			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
-				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
-				of artifacts. We use this here so that we always get the correct versions
-				of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can
-				read this as the JBoss stack of the Java EE 6 APIs, with some extras tools
-				for your project, such as Arquillian for testing) -->
-			<dependency>
-				<groupId>org.jboss.bom</groupId>
-				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
-				<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
 
 			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
 				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
@@ -125,12 +79,12 @@
 				<version>${errai.version}</version>
 				<exclusions>
 					<exclusion>
-						<groupId>javax.inject</groupId>
 						<artifactId>javax.inject</artifactId>
+						<groupId>javax.inject</groupId>
 					</exclusion>
 					<exclusion>
-						<groupId>javax.annotation</groupId>
 						<artifactId>jsr250-api</artifactId>
+						<groupId>javax.annotation</groupId>
 					</exclusion>
 				</exclusions>
 			</dependency>
@@ -140,12 +94,12 @@
 				<version>${errai.version}</version>
 				<exclusions>
 					<exclusion>
-						<groupId>javax.inject</groupId>
 						<artifactId>javax.inject</artifactId>
+						<groupId>javax.inject</groupId>
 					</exclusion>
 					<exclusion>
-						<groupId>javax.annotation</groupId>
 						<artifactId>jsr250-api</artifactId>
+						<groupId>javax.annotation</groupId>
 					</exclusion>
 				</exclusions>
 			</dependency>
@@ -206,12 +160,62 @@
 				<classifier>${platform}</classifier>
 			</dependency>
 
+			<!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
+			<!-- Override dependency resolver with latest version.
+	             This must go *BEFORE* the Arquillian BOM. -->
+			<!--  ShrinkWrap  -->
+			<dependency>
+				<groupId>org.jboss.shrinkwrap</groupId>
+				<artifactId>shrinkwrap-bom</artifactId>
+				<version>${org.jboss.shrinkwrap.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.shrinkwrap.resolver</groupId>
+				<artifactId>shrinkwrap-resolver-bom</artifactId>
+				<version>${org.jboss.shrinkwrap.resolver.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+				<artifactId>shrinkwrap-descriptors-bom</artifactId>
+				<version>${org.jboss.shrinkwrap.descriptors.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${org.jboss.arquillian.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
+				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
+				of artifacts. We use this here so that we always get the correct versions
+				of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can
+				read this as the JBoss stack of the Java EE 6 APIs, with some extras tools
+				for your project, such as Arquillian for testing) -->
+			<dependency>
+				<groupId>org.jboss.bom</groupId>
+				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
+				<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 			<!-- gwt-test-utils is needed by clover -->
 			<dependency>
-			    <groupId>com.googlecode.gwt-test-utils</groupId>
-			    <artifactId>gwt-test-utils</artifactId>
-			    <version>${gwt.test.utils.version}</version><!--TODO-->
-			    <scope>test</scope>
+				<groupId>com.googlecode.gwt-test-utils</groupId>
+				<artifactId>gwt-test-utils</artifactId>
+				<version>${gwt.test.utils.version}</version>
+				<!--TODO-->
+				<scope>test</scope>
 			</dependency>
 
 			<!-- Test dependencies -->
@@ -226,6 +230,100 @@
 	</dependencyManagement>
 
 	<dependencies>
+
+		<!-- Import the Bean Validation API, which is used both on the server and
+			the client. -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<!-- GWT validation also requires the validation API sources at compile
+			time -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${validation.api.version}</version>
+			<classifier>sources</classifier>
+		</dependency>
+
+		<!-- The next set of dependencies are for Errai -->
+		<dependency>
+			<groupId>org.jboss.errai</groupId>
+			<artifactId>errai-bus</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>javax.inject</artifactId>
+					<groupId>javax.inject</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jsr250-api</artifactId>
+					<groupId>javax.annotation</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.errai</groupId>
+			<artifactId>errai-ioc</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>javax.inject</artifactId>
+					<groupId>javax.inject</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jsr250-api</artifactId>
+					<groupId>javax.annotation</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.errai</groupId>
+			<artifactId>errai-tools</artifactId>
+		</dependency>
+
+		<!-- Errai CDI Integration Modules -->
+		<dependency>
+			<groupId>org.jboss.errai</groupId>
+			<artifactId>errai-cdi-client</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.errai</groupId>
+			<artifactId>errai-weld-integration</artifactId>
+
+			<exclusions>
+				<!-- errai-cdi-jetty is only required for integration testing -->
+				<exclusion>
+					<artifactId>errai-cdi-jetty</artifactId>
+					<groupId>org.jboss.errai</groupId>
+				</exclusion>
+
+				<exclusion>
+					<artifactId>weld-servlet</artifactId>
+					<groupId>org.jboss.weld.servlet</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- gwt-user is required at runtime because we use some of the client/server
+			shared APIs such as RegExp, so scope is 'compile' rather than 'provided'. -->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.errai</groupId>
+			<artifactId>jboss7-support</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+			<scope>compile</scope>
+		</dependency>
 
 		<!-- First declare the APIs we depend on and need for compilation. All
 			of them are provided by JBoss AS 7 -->
@@ -278,13 +376,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the Bean Validation API, which is used both on the server and
-			the client. -->
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-		</dependency>
-
 		<!-- JSR-303 (Bean Validation) Implementation -->
 		<!-- Provides portable constraints such as @Email -->
 		<!-- Hibernate Validator is shipped in JBoss AS 7 -->
@@ -295,8 +386,8 @@
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
-					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -307,63 +398,14 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate.validator.version}</version>
+			<classifier>sources</classifier>
 			<scope>provided</scope>
-			<classifier>sources</classifier>
 			<exclusions>
 				<exclusion>
-					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<!-- GWT validation also requires the validation API sources at compile
-			time -->
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>${validation.api.version}</version>
-			<classifier>sources</classifier>
-		</dependency>
-
-		<!-- The next set of dependencies are for Errai -->
-		<dependency>
-			<groupId>org.jboss.errai</groupId>
-			<artifactId>errai-bus</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.inject</groupId>
-					<artifactId>javax.inject</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.annotation</groupId>
-					<artifactId>jsr250-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.errai</groupId>
-			<artifactId>errai-ioc</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.inject</groupId>
-					<artifactId>javax.inject</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.annotation</groupId>
-					<artifactId>jsr250-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.errai</groupId>
-			<artifactId>errai-tools</artifactId>
-		</dependency>
-
-		<!-- Errai CDI Integration Modules -->
-		<dependency>
-			<groupId>org.jboss.errai</groupId>
-			<artifactId>errai-cdi-client</artifactId>
 		</dependency>
 
 		<dependency>
@@ -373,44 +415,12 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.jboss.errai</groupId>
-			<artifactId>errai-weld-integration</artifactId>
-
-			<exclusions>
-				<!-- errai-cdi-jetty is only required for integration testing -->
-				<exclusion>
-					<groupId>org.jboss.errai</groupId>
-					<artifactId>errai-cdi-jetty</artifactId>
-				</exclusion>
-
-				<exclusion>
-					<groupId>org.jboss.weld.servlet</groupId>
-					<artifactId>weld-servlet</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<!-- gwt-user is required at runtime because we use some of the client/server
-			shared APIs such as RegExp, so scope is 'compile' rather than 'provided'. -->
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-user</artifactId>
-			<version>${gwt.version}</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
 			<version>${gwt.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.jboss.errai</groupId>
-			<artifactId>jboss7-support</artifactId>
-		</dependency>
 		<!-- End of Errai dependencies -->
-
 
 		<!-- Now we declare any tools needed -->
 
@@ -432,17 +442,10 @@
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
-					<groupId>xml-apis</groupId>
 					<artifactId>xml-apis</artifactId>
+					<groupId>xml-apis</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-			<scope>compile</scope>
 		</dependency>
 
 		<!-- Needed for running tests (you may also use TestNG) -->
@@ -453,17 +456,17 @@
 		</dependency>
 
 		<!-- Optional, but highly recommended -->
-    		<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) JPA from JUnit/TestNG -->
+		<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) JPA from JUnit/TestNG -->
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
 			<artifactId>arquillian-junit-container</artifactId>
 			<scope>test</scope>
 		</dependency>
-	        <dependency>
-	            <artifactId>arquillian-core-api</artifactId>
-	            <groupId>org.jboss.arquillian.core</groupId>
-	            <scope>test</scope>
-	        </dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.core</groupId>
+			<artifactId>arquillian-core-api</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.jboss.arquillian.protocol</groupId>
 			<artifactId>arquillian-protocol-servlet</artifactId>
@@ -474,19 +477,19 @@
 
 	<build>
 		<!-- Generate compiled stuff in the folder used for developing mode -->
-        <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
 		<resources>
 			<resource>
-				<directory>${basedir}/src/main/resources</directory>
 				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
 				<includes>
 					<include>**/*.xml</include>
 					<include>**/*.properties</include>
 				</includes>
 			</resource>
 			<resource>
-				<directory>${basedir}/src/main/webapp/WEB-INF</directory>
 				<filtering>true</filtering>
+				<directory>${basedir}/src/main/webapp/WEB-INF</directory>
 				<includes>
 					<include>**/*.xml</include>
 					<include>**/*.properties</include>
@@ -495,8 +498,8 @@
 		</resources>
 		<testResources>
 			<testResource>
-				<directory>${basedir}/src/test/resources</directory>
 				<filtering>true</filtering>
+				<directory>${basedir}/src/test/resources</directory>
 				<includes>
 					<include>**/*.xml</include>
 					<include>**/*.properties</include>
@@ -589,165 +592,165 @@
 					-->
 				</configuration>
 			</plugin>
-					<!-- Allow this web application to be started with the command : 'mvn tomcat7:run' -->
+			<!-- Allow this web application to be started with the command : 'mvn tomcat7:run' -->
 			<plugin>
-			    <groupId>org.apache.tomcat.maven</groupId>
-			    <artifactId>tomcat7-maven-plugin</artifactId>
-			    <configuration>
-			    <!-- http port -->
-			        <port>${tomcat.port}</port>
-			        <path>/nabla</path>
-			        <!--<contextFile>${basedir}/src/main/webapp/META-INF/context.xml</contextFile>-->
-			        <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
-			        <!--
-			        <systemProperties>
-			            <java.security.auth.login.config>${basedir}/conf/jaas.config</java.security.auth.login.config>
-			        </systemProperties>
-			        -->
-			        <url>${deploy.url}</url>
-			        <username>${cargo.remote.user}</username>
-			        <password>${cargo.remote.password}</password>
-			        <addContextWarDependencies>true</addContextWarDependencies>
-			        <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
-			        <configurationDir>${basedir}</configurationDir>
-			    </configuration>
-			    <dependencies>
-			        <dependency>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<dependencies>
+					<dependency>
 						<groupId>org.jboss.tools.gwt.kitchensink</groupId>
 						<artifactId>gwt-kitchensink</artifactId>
 						<version>${project.version}</version>
 						<type>war</type>
-			        </dependency>
-			        <dependency>
-							<groupId>${jdbc.groupId}</groupId>
-							<artifactId>${jdbc.client.artifactId}</artifactId>
-							<version>${jdbc.version}</version>
-			            	<scope>runtime</scope>
-			        </dependency>
-			    </dependencies>
+					</dependency>
+					<dependency>
+						<groupId>${jdbc.groupId}</groupId>
+						<artifactId>${jdbc.client.artifactId}</artifactId>
+						<version>${jdbc.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<!-- http port -->
+					<port>${tomcat.port}</port>
+					<path>/nabla</path>
+					<!--<contextFile>${basedir}/src/main/webapp/META-INF/context.xml</contextFile>-->
+					<addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+					<!--
+			        <systemProperties>
+			            <java.security.auth.login.config>${basedir}/conf/jaas.config</java.security.auth.login.config>
+			        </systemProperties>
+			        -->
+					<url>${deploy.url}</url>
+					<username>${cargo.remote.user}</username>
+					<password>${cargo.remote.password}</password>
+					<addContextWarDependencies>true</addContextWarDependencies>
+					<addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+					<configurationDir>${basedir}</configurationDir>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
 	<profiles>
-        	<!-- Default profile. The reason why we use a default profile, instead of adding the gwt-maven-plugin in the
+		<!-- Default profile. The reason why we use a default profile, instead of adding the gwt-maven-plugin in the
         	top-level <build> tag, is that if we would do so, configuration of gwt-maven-plugin in with.clover.serveronly
         	/ with.clover.everything profiles would not overwrite the default setting (and we have to disable two goals) -->
-        	<profile>
-        	    <id>default</id>
-        	    <!--
+		<profile>
+			<id>default</id>
+			<!--
 				<activation>
 					<activeByDefault>true</activeByDefault>
 				</activation>
 		    -->
-        	    <build>
-        	        <plugins>
-			    <!-- The default profile skips all tests, though you can tune it to run
+			<build>
+				<plugins>
+					<!-- The default profile skips all tests, though you can tune it to run
 			    	just unit tests based on a custom pattern -->
-			    <!-- Seperate profiles are provided for running all tests, including Arquillian
+					<!-- Seperate profiles are provided for running all tests, including Arquillian
 			    	tests that execute in the specified container -->
-			    <plugin>
-			    	<groupId>org.apache.maven.plugins</groupId>
-			    	<artifactId>maven-surefire-plugin</artifactId>
-			    	<version>${maven.surefire.plugin.version}</version>
-			    	<inherited>true</inherited>
-			    	<configuration>
-			    		<skip>true</skip>
-			    	</configuration>
-			    </plugin>
-			    <!-- GWT plugin to compile client-side java code to javascript and to
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven.surefire.plugin.version}</version>
+						<inherited>true</inherited>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+					<!-- GWT plugin to compile client-side java code to javascript and to
 			    	run GWT development mode -->
-			    <plugin>
-			    	<groupId>org.codehaus.mojo</groupId>
-			    	<artifactId>gwt-maven-plugin</artifactId>
-			    	<version>${maven.gwt.plugin.version}</version>
-			    	<configuration>
-			    		<inplace>true</inplace>
-			    		<logLevel>INFO</logLevel>
-			    		<extraJvmArgs>-Xmx512m</extraJvmArgs>
-
-			    		<!-- Configure GWT's development mode (formerly known as hosted mode)
-			    			to not start the default server (embedded jetty), but to download the HTML
-			    			host page from the configured runTarget. -->
-			    		<noServer>true</noServer>
-			    		<hostedWebapp>${webappDirectory}</hostedWebapp>
-			    		<!--<runTarget>http://localhost:8180/gwt-kitchensink/KitchenSink.html</runTarget>-->
-			    		<runTarget>KitchenSink.html</runTarget>
-			    		<!-- Use htmlunit framework simulating Internet Explorer 7 -->
-                	        		<!--
-                	        		<mode>htmlunit</mode>
-                	        		<htmlunit>IE7</htmlunit>
-                	        		-->
-			    	</configuration>
-			    	<executions>
-			    		<execution>
-			    			<goals>
-			    				<goal>resources</goal>
-			    				<goal>compile</goal>
-			    				<!--
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<version>${maven.gwt.plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>resources</goal>
+									<goal>compile</goal>
+									<!--
 			    				<goal>test</goal>
                 	                		<goal>i18n</goal>
                 	                		<goal>generateAsync</goal>
                 	                		-->
-			    			</goals>
-			    		</execution>
-			    		<execution>
-			    			<id>gwt-clean</id>
-			    			<phase>clean</phase>
-			    			<goals>
-			    				<goal>clean</goal>
-			    			</goals>
-			    		</execution>
-			    	</executions>
-			    </plugin>
-        	        </plugins>
-        	    </build>
-        	</profile>
+								</goals>
+							</execution>
+							<execution>
+								<id>gwt-clean</id>
+								<phase>clean</phase>
+								<goals>
+									<goal>clean</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<inplace>true</inplace>
+							<logLevel>INFO</logLevel>
+							<extraJvmArgs>-Xmx512m</extraJvmArgs>
 
-       	<!-- ============================================================================================ -->
-        	<!-- Use this profile to enable Clover instrumentation for server-side code only.                 -->
-        	<!-- Client and common code will not be instrumented so it can be translated by GWT to JavaScript -->
-        	<!-- But thanks to this you can perform full tests or your application in a web browser           -->
-        	<!-- ============================================================================================ -->
-        	<profile>
-        	    <id>with-test</id>
-        	    <build>
-        	        <plugins>
-        	            <!-- GWT Maven Plugin -->
-        	            <plugin>
-        	                <groupId>org.codehaus.mojo</groupId>
-        	                <artifactId>gwt-maven-plugin</artifactId>
-        	                <version>${maven.gwt.plugin.version}</version>
-        	                <executions>
-        	                    <execution>
-        	                        <goals>
-        	                            <goal>compile</goal>
-        	                            <goal>test</goal>
-        	                            <!--<goal>i18n</goal>
+							<!-- Configure GWT's development mode (formerly known as hosted mode)
+			    			to not start the default server (embedded jetty), but to download the HTML
+			    			host page from the configured runTarget. -->
+							<noServer>true</noServer>
+							<hostedWebapp>${webappDirectory}</hostedWebapp>
+							<!--<runTarget>http://localhost:8180/gwt-kitchensink/KitchenSink.html</runTarget>-->
+							<runTarget>KitchenSink.html</runTarget>
+							<!-- Use htmlunit framework simulating Internet Explorer 7 -->
+							<!--
+                	        		<mode>htmlunit</mode>
+                	        		<htmlunit>IE7</htmlunit>
+                	        		-->
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- ============================================================================================ -->
+		<!-- Use this profile to enable Clover instrumentation for server-side code only.                 -->
+		<!-- Client and common code will not be instrumented so it can be translated by GWT to JavaScript -->
+		<!-- But thanks to this you can perform full tests or your application in a web browser           -->
+		<!-- ============================================================================================ -->
+		<profile>
+			<id>with-test</id>
+			<build>
+				<plugins>
+					<!-- GWT Maven Plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<version>${maven.gwt.plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>compile</goal>
+									<goal>test</goal>
+									<!--<goal>i18n</goal>
         	                            <goal>generateAsync</goal>-->
-        	                        </goals>
-        	                    </execution>
-        	                </executions>
-        	                <!-- Plugin configuration. There are many available options, see gwt-maven-plugin documentation at codehaus.org -->
-        	                <configuration>
-        	                    <runTarget>KitchenSink.html</runTarget>
-        	                    <hostedWebapp>${webappDirectory}</hostedWebapp>
-        	                    <!--<i18nMessagesBundle>com.nabla.client.Messages</i18nMessagesBundle>-->
-        	                    <!-- Use htmlunit framework simulating Internet Explorer 7 -->
-        	                    <!--
+								</goals>
+							</execution>
+						</executions>
+						<!-- Plugin configuration. There are many available options, see gwt-maven-plugin documentation at codehaus.org -->
+						<configuration>
+							<runTarget>KitchenSink.html</runTarget>
+							<hostedWebapp>${webappDirectory}</hostedWebapp>
+							<!--<i18nMessagesBundle>com.nabla.client.Messages</i18nMessagesBundle>-->
+							<!-- Use htmlunit framework simulating Internet Explorer 7 -->
+							<!--
         	                    <mode>htmlunit</mode>
         	                    <htmlunit>IE7</htmlunit>
         	                    <validateOnly>true</validateOnly>
         	                    -->
-        	                </configuration>
-        	            </plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-surefire-plugin</artifactId>
-							<version>${maven.surefire.plugin.version}</version>
-							<configuration>
-								<skip>false</skip>
-								<!--
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven.surefire.plugin.version}</version>
+						<configuration>
+							<skip>false</skip>
+							<!--
 											<environmentVariables>
 												<JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
 											</environmentVariables>
@@ -755,167 +758,167 @@
 												<jboss.version>${server.version}</jboss.version>
 											</systemProperties>
 											-->
-							</configuration>
-						</plugin>
-        	            <plugin>
-        	                <groupId>com.atlassian.maven.plugins</groupId>
-        	                <artifactId>maven-clover2-plugin</artifactId>
-        	                <configuration>
-        	                    <skip>true</skip>
-        	                </configuration>
-        	            </plugin>
-        	        </plugins>
-        	    </build>
-        	</profile>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>com.atlassian.maven.plugins</groupId>
+						<artifactId>maven-clover2-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 
-        	<!-- ============================================================================================ -->
-        	<!-- Use this profile to enable Clover instrumentation for server-side code only.                 -->
-        	<!-- Client and common code will not be instrumented so it can be translated by GWT to JavaScript -->
-        	<!-- But thanks to this you can perform full tests or your application in a web browser           -->
-        	<!-- ============================================================================================ -->
-        	<profile>
-        	    <id>with-clover-serveronly</id>
-        	    <build>
-        	        <plugins>
-        	            <!-- GWT Maven Plugin -->
-        	            <plugin>
-        	                <groupId>org.codehaus.mojo</groupId>
-        	                <artifactId>gwt-maven-plugin</artifactId>
-        	                <version>${maven.gwt.plugin.version}</version>
-        	                <executions>
-        	                    <execution>
-        	                        <goals>
-        	                            <goal>compile</goal>
-        	                            <goal>test</goal>
-        	                            <goal>i18n</goal>
-        	                            <goal>generateAsync</goal>
-        	                        </goals>
-        	                    </execution>
-        	                </executions>
-        	                <!-- Plugin configuration. There are many available options, see gwt-maven-plugin documentation at codehaus.org -->
-        	                <configuration>
-        	                    <runTarget>KitchenSink.html</runTarget>
-        	                    <hostedWebapp>${webappDirectory}</hostedWebapp>
-        	                    <!--<i18nMessagesBundle>com.nabla.client.Messages</i18nMessagesBundle>-->
-        	                    <!-- Use htmlunit framework simulating Internet Explorer 7 -->
-        	                    <!--
+		<!-- ============================================================================================ -->
+		<!-- Use this profile to enable Clover instrumentation for server-side code only.                 -->
+		<!-- Client and common code will not be instrumented so it can be translated by GWT to JavaScript -->
+		<!-- But thanks to this you can perform full tests or your application in a web browser           -->
+		<!-- ============================================================================================ -->
+		<profile>
+			<id>with-clover-serveronly</id>
+			<build>
+				<plugins>
+					<!-- GWT Maven Plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<version>${maven.gwt.plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>compile</goal>
+									<goal>test</goal>
+									<goal>i18n</goal>
+									<goal>generateAsync</goal>
+								</goals>
+							</execution>
+						</executions>
+						<!-- Plugin configuration. There are many available options, see gwt-maven-plugin documentation at codehaus.org -->
+						<configuration>
+							<runTarget>KitchenSink.html</runTarget>
+							<hostedWebapp>${webappDirectory}</hostedWebapp>
+							<!--<i18nMessagesBundle>com.nabla.client.Messages</i18nMessagesBundle>-->
+							<!-- Use htmlunit framework simulating Internet Explorer 7 -->
+							<!--
         	                    <mode>htmlunit</mode>
         	                    <htmlunit>IE7</htmlunit>
         	                    <validateOnly>true</validateOnly>
         	                    -->
-        	                </configuration>
-        	            </plugin>
-        	            <plugin>
-        	                <groupId>com.atlassian.maven.plugins</groupId>
-        	                <artifactId>maven-clover2-plugin</artifactId>
-        	                <executions>
-        	                    <execution>
-        	                        <id>clover-initialization</id>
-        	                        <phase>initialize</phase>
-        	                        <goals>
-        	                            <goal>setup</goal>
-        	                            <!-- Enable Clover instrumentation -->
-        	                        </goals>
-        	                    </execution>
-        	                    <execution>
-        	                        <id>clover-reporting</id>
-        	                        <phase>install</phase>
-        	                        <goals>
-        	                            <goal>aggregate</goal>
-        	                            <!-- Aggregate results from sub-modules -->
-        	                            <goal>clover</goal>
-        	                            <!-- Generate report -->
-        	                        </goals>
-        	                    </execution>
-        	                </executions>
-        	                <configuration>
-        	                    <!-- List all server-side packages which has to be instrumented -->
-        	                    <includes>
-        	                        <include>com/nabla/server/**</include>
-        	                    </includes>
-        	                </configuration>
-        	            </plugin>
-        	        </plugins>
-        	    </build>
-        	</profile>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>com.atlassian.maven.plugins</groupId>
+						<artifactId>maven-clover2-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>clover-initialization</id>
+								<phase>initialize</phase>
+								<goals>
+									<goal>setup</goal>
+									<!-- Enable Clover instrumentation -->
+								</goals>
+							</execution>
+							<execution>
+								<id>clover-reporting</id>
+								<phase>install</phase>
+								<goals>
+									<goal>aggregate</goal>
+									<!-- Aggregate results from sub-modules -->
+									<goal>clover</goal>
+									<!-- Generate report -->
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<!-- List all server-side packages which has to be instrumented -->
+							<includes>
+								<include>com/nabla/server/**</include>
+							</includes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 
-        	<!-- ============================================================================================ -->
-        	<!-- Use this profile to enable Clover instrumentation for server, client and common code         -->
-        	<!-- Because of fact that everything will be instrumented, client-side and common code cannot     -->
-        	<!-- be translated by GWT to JavaScript. Therefore you cannot run tests in a web browser but      -->
-        	<!-- you have to use dedicated framework which runs fully in JVM. In this example, the            -->
-        	<!-- gwt-test-utils is used for this purpose.                                                     -->
-        	<!-- ============================================================================================ -->
-        	<profile>
-        	    <id>with-clover-everything</id>
-        	    <build>
-        	        <plugins>
-        	            <plugin>
-        	                <groupId>org.codehaus.mojo</groupId>
-        	                <artifactId>gwt-maven-plugin</artifactId>
-        	                <version>${maven.gwt.plugin.version}</version>
-        	                <executions>
-        	                    <execution>
-        	                        <goals>
-        	                            <!-- Do not run gwt:compile and gwt:test goals. The reason is that it will start
+		<!-- ============================================================================================ -->
+		<!-- Use this profile to enable Clover instrumentation for server, client and common code         -->
+		<!-- Because of fact that everything will be instrumented, client-side and common code cannot     -->
+		<!-- be translated by GWT to JavaScript. Therefore you cannot run tests in a web browser but      -->
+		<!-- you have to use dedicated framework which runs fully in JVM. In this example, the            -->
+		<!-- gwt-test-utils is used for this purpose.                                                     -->
+		<!-- ============================================================================================ -->
+		<profile>
+			<id>with-clover-everything</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<version>${maven.gwt.plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<!-- Do not run gwt:compile and gwt:test goals. The reason is that it will start
         	                            conversion of Java client and shared code to JavaScript, searching for sources
         	                            of all referenced classes, including Clover instrumentation, which causes a failure. -->
-        	                            <!--<goal>compile</goal>-->
-        	                            <!--<goal>test</goal>-->
-        	                            <goal>i18n</goal>
-        	                            <goal>generateAsync</goal>
-        	                        </goals>
-        	                    </execution>
-        	                </executions>
-        	                <!-- Plugin configuration. There are many available options, see gwt-maven-plugin documentation at codehaus.org -->
-        	                <configuration>
-        	                    <runTarget>KitchenSink.html</runTarget>
-        	                    <hostedWebapp>${webappDirectory}</hostedWebapp>
-        	                    <!--<i18nMessagesBundle>com.nabla.client.Messages</i18nMessagesBundle>-->
-        	                    <!-- Use htmlunit framework simulating Internet Explorer 7 -->
-        	                    <!--
+									<!--<goal>compile</goal>-->
+									<!--<goal>test</goal>-->
+									<goal>i18n</goal>
+									<goal>generateAsync</goal>
+								</goals>
+							</execution>
+						</executions>
+						<!-- Plugin configuration. There are many available options, see gwt-maven-plugin documentation at codehaus.org -->
+						<configuration>
+							<runTarget>KitchenSink.html</runTarget>
+							<hostedWebapp>${webappDirectory}</hostedWebapp>
+							<!--<i18nMessagesBundle>com.nabla.client.Messages</i18nMessagesBundle>-->
+							<!-- Use htmlunit framework simulating Internet Explorer 7 -->
+							<!--
         	                    <mode>htmlunit</mode>
         	                    <htmlunit>IE7</htmlunit>
         	                    -->
-        	                </configuration>
-        	            </plugin>
-        	            <plugin>
-        	                <groupId>org.apache.maven.plugins</groupId>
-        	                <artifactId>maven-surefire-plugin</artifactId>
-        	                <configuration>
-        	                    <!-- Increase available memory as gwt-test-utils can consume a lot -->
-        	                    <argLine>-Xmx512M -XX:MaxPermSize=128M</argLine>
-        	                </configuration>
-        	            </plugin>
-        	            <plugin>
-        	                <groupId>com.atlassian.maven.plugins</groupId>
-        	                <artifactId>maven-clover2-plugin</artifactId>
-        	                <executions>
-        	                    <execution>
-        	                        <id>clover-initialization</id>
-        	                        <phase>initialize</phase>
-        	                        <goals>
-        	                            <!-- Enable Clover instrumentation -->
-        	                            <goal>setup</goal>
-        	                        </goals>
-        	                    </execution>
-        	                    <execution>
-        	                        <id>clover-reporting</id>
-        	                        <phase>install</phase>
-        	                        <goals>
-        	                            <!-- Aggregate results from sub-modules and generate report-->
-        	                            <goal>aggregate</goal>
-        	                            <goal>clover</goal>
-        	                        </goals>
-        	                    </execution>
-        	                </executions>
-        	                <configuration>
-        	                    <!-- We don't need <includes> section as everything will be instrumented List all server-side packages which has to be instrumented -->
-        	                </configuration>
-        	            </plugin>
-        	        </plugins>
-        	    </build>
-        	</profile>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<!-- Increase available memory as gwt-test-utils can consume a lot -->
+							<argLine>-Xmx512M -XX:MaxPermSize=128M</argLine>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>com.atlassian.maven.plugins</groupId>
+						<artifactId>maven-clover2-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>clover-initialization</id>
+								<phase>initialize</phase>
+								<goals>
+									<!-- Enable Clover instrumentation -->
+									<goal>setup</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>clover-reporting</id>
+								<phase>install</phase>
+								<goals>
+									<!-- Aggregate results from sub-modules and generate report-->
+									<goal>aggregate</goal>
+									<goal>clover</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<!-- We don't need <includes> section as everything will be instrumented List all server-side packages which has to be instrumented -->
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 </project>
