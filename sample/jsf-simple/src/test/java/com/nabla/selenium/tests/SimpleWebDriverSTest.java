@@ -179,9 +179,9 @@ public class SimpleWebDriverSTest
 		getCurrentDriver().findElement(By.name(SimpleWebDriverSTest.INPUT_TEXT_ID)).sendKeys("Test me !!!");
 
         // wait for the application to get fully loaded
-        Wait wait = new FluentWait(getCurrentDriver())    
-        	    .withTimeout(30, TimeUnit.SECONDS)    
-        	    .pollingEvery(5, TimeUnit.SECONDS)   
+        Wait wait = new FluentWait(getCurrentDriver())
+        	    .withTimeout(30, TimeUnit.SECONDS)
+        	    .pollingEvery(5, TimeUnit.SECONDS)
         	    .ignoring(NoSuchElementException.class);
 
 		WebElement findOwnerLink = (WebElement) wait.until(new Function() {

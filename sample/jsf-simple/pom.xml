@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>sample</artifactId>
 		<groupId>com.nabla.project.servers.sample</groupId>
+		<artifactId>sample</artifactId>
 		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 	<!--<groupId>com.nabla.project.servers.sample</groupId> -->

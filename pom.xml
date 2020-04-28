@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>databases</artifactId>
 		<groupId>com.nabla.project</groupId>
+		<artifactId>databases</artifactId>
 		<version>1.0.1-SNAPSHOT</version>
 		<relativePath>../databases/pom.xml</relativePath>
 	</parent>
@@ -13,7 +13,7 @@
 	<packaging>pom</packaging>
 	<name>Nabla Servers</name>
 	<description>The Servers pom file is a superpom to centralize all third parties</description>
-	<url>http://maven.nabla.mobi/dependencies/customs/main/databases/servers</url>
+	<url>http://maven.albandrieu.com/dependencies/customs/main/databases/servers</url>
 
 	<scm>
 		<connection>scm:git:ssh://git@github.com/AlbanAndrieu/nabla-servers.git</connection>
@@ -770,7 +770,7 @@
 				<cargo.container.home>${jboss.home}</cargo.container.home>
 				<!--http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip -->
 				<cargo.container.type>installed</cargo.container.type>
-				<cargo.container.url>http://downloads.sourceforge.net/jboss/jboss-${jboss5.version}.zip?big_mirror=1</cargo.container.url>
+				<cargo.container.url>https://sourceforge.net/projects/jboss/files/JBoss/JBoss-${jboss5.version}/jboss-${jboss5.version}.zip?big_mirror=1</cargo.container.url>
 				<cargo.deployables.type>installed</cargo.deployables.type>
 				<cargo.port>${jboss.port}</cargo.port>
 
@@ -1091,6 +1091,80 @@
 				<server.name>${product.name}</server.name>
 				<server.port></server.port>
 				<server.version>${jetty.version}</server.version>
+			</properties>
+		</profile>
+		<profile>
+			<id>tomcat9x</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>tomcat9x</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<skip>${maven.test.skip}</skip>
+							<wait>${cargo.wait}</wait>
+							<configuration>
+								<type>${cargo.configuration.type}</type>
+								<properties>
+									<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
+									<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
+									<cargo.remote.uri>${deploy.url}</cargo.remote.uri>
+									<cargo.logging>high</cargo.logging>
+									<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
+									<cargo.rmi.port>${cargo.rmi.port}</cargo.rmi.port>
+									<cargo.tomcat.ajp.port>${cargo.tomcat.ajp.port}</cargo.tomcat.ajp.port>
+								</properties>
+							</configuration>
+							<container>
+								<containerId>${cargo.container}</containerId>
+								<type>${cargo.container.type}</type>
+								<log>${project.build.directory}/cargo.log</log>
+								<logLevel>debug</logLevel>
+								<systemProperties>
+									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
+								</systemProperties>
+								<zipUrlInstaller>
+									<url>${cargo.container.url}</url>
+								</zipUrlInstaller>
+							</container>
+							<packager>
+								<outputLocation>${project.build.directory}/tomcat-packaged</outputLocation>
+							</packager>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+			<properties>
+				<cargo.configuration.home>${project.build.directory}/catalina-base</cargo.configuration.home>
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+
+				<cargo.container>tomcat9x</cargo.container>
+				<cargo.container.home>${tomcat.home}</cargo.container.home>
+				<cargo.container.type>installed</cargo.container.type>
+				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-9/v${server.version}/bin/apache-tomcat-${server.version}.zip</cargo.container.url>
+				<cargo.deployables.type></cargo.deployables.type>
+
+				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
+				<cargo.port>${tomcat.port}</cargo.port>
+				<datasource>openejb:Resource/jdbc/${datasource.name}</datasource>
+				<deploy.url>http://${cargo.host}:${tomcat.port}/manager/text</deploy.url>
+				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
+				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
+
+				<scope.type>${scope.compile}</scope.type>
+				<server.home>${tomcat.home}</server.home>
+				<server.name>${product.name}</server.name>
+				<server.port>${tomcat.port}</server.port>
+				<server.version>9.0.34</server.version>
+				<tomcat.home>${env.CATALINA_BASE}</tomcat.home>
 			</properties>
 		</profile>
 		<profile>
