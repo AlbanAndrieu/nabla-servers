@@ -95,8 +95,7 @@
 		<pluginManagement>
 			<plugins>
 				<!-- mvn cargo:deploy -->
-				<!-- call mvn clean verify org.codehaus.cargo:cargo-maven2-plugin:run
-                                        > deploy.log 2>&1 -->
+				<!-- call mvn clean verify org.codehaus.cargo:cargo-maven2-plugin:run > deploy.log 2>&1 -->
 				<plugin>
 					<groupId>org.codehaus.cargo</groupId>
 					<artifactId>cargo-maven2-plugin</artifactId>
@@ -104,24 +103,24 @@
 					<configuration>
 						<skip>${maven.test.skip}</skip>
 						<!--
-                                                When Cargo starts the container, the following tag instructs it to
-                                                wait for you to kill the session with Crtl-C (when true)
-                                                -->
+                        When Cargo starts the container, the following tag instructs it to
+                        wait for you to kill the session with Crtl-C (when true)
+                        -->
 						<wait>${cargo.wait}</wait>
 						<container>
 							<!--
-                                                                Specifying "tomcat6x" is very important! This one tripped me up
-                                                                for quite a while. The issue is that instead of being an
-                                                                identifier for you, "tomcat6x" is an identifier for Cargo that
-                                                                you want to deploy your webapp in Tomcat 6.x. I had initially
-                                                                thought otherwise and hence just dropped the 'x', making it
-                                                                "tomcat6", but that never worked.
-                                                        -->
+                            Specifying "tomcat6x" is very important! This one tripped me up
+                            for quite a while. The issue is that instead of being an
+                            identifier for you, "tomcat6x" is an identifier for Cargo that
+                            you want to deploy your webapp in Tomcat 6.x. I had initially
+                            thought otherwise and hence just dropped the 'x', making it
+                            "tomcat6", but that never worked.
+                            -->
 							<!--<containerId>tomcat6x</containerId>-->
 							<!--
-                                                                Type == Installed means that you want to deploy to a container
-                                                                that's installed on your computer
-                                                        -->
+                            Type == Installed means that you want to deploy to a container
+                            that's installed on your computer
+                            -->
 							<!--<type>installed</type>-->
 							<!-- The home folder for your local Tomcat -->
 							<!--<home>${catalina.home}</home>-->
@@ -130,11 +129,11 @@
 						</container>
 						<configuration>
 							<!--
-                                                                This is another one that confused me for long. Its not enough to
-                                                                specify 'installed' in the container tag. You have to now specify
-                                                                another configuration with type == existing and re-issue the home
-                                                                path
-                                                        -->
+                            This is another one that confused me for long. Its not enough to
+                            specify 'installed' in the container tag. You have to now specify
+                            another configuration with type == existing and re-issue the home
+                            path
+                            -->
 							<type>${cargo.configuration.type}</type>
 							<!--<home>${cargo.container.home}</home>-->
 							<properties>
@@ -1699,7 +1698,6 @@
 					<!--<name>!profile.activation</name>-->
 					<name>arquillian</name>
 					<value>arq-weld-ee-embedded</value>
-
 				</property>
 			</activation>
 			<build>
@@ -2061,7 +2059,7 @@
 				<dependency>
 					<groupId>org.jboss.weld.servlet</groupId>
 					<artifactId>weld-servlet</artifactId>
-					<version>1.0.1-Final</version>
+					<version>${weld.servlet.version}</version>
 					<scope>test</scope>
 				</dependency>
 
