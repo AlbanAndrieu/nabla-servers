@@ -14,7 +14,8 @@
 	<name>Server Samples</name>
 	<description>Server Samples</description>
 	<modules>
-		<module>jsf-simple</module>
+		<!-- DISABLED since jboss 5 is too old -->
+		<!--<module>jsf-simple</module>-->
 		<!--<module>jsf-simple-saucelabs</module>-->
 		<!--<module>jboss-embeddable-ejb3</module>-->
 		<!--<module>gwt-kitchensink</module>-->

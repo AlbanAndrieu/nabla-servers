@@ -22,7 +22,7 @@ phonecatAnimations.animation('.phone', function() {
         element.stop();
       }
     };
-  }
+  };
 
   var animateDown = function(element, className, done) {
     if(className != 'active') {
@@ -43,7 +43,7 @@ phonecatAnimations.animation('.phone', function() {
         element.stop();
       }
     };
-  }
+  };
 
   return {
     addClass: animateUp,

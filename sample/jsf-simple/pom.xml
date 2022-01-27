@@ -385,136 +385,7 @@
 
 	<build>
 		<finalName>welcome</finalName>
-
-		<!-- TOSEE http://blog.xebia.fr/2010/01/13/comment-separer-ses-tests-dintegrations/ -->
-
 		<plugins>
-			<!--
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>selenium-maven-plugin</artifactId>
-				<version>${maven.selenium.plugin.version}</version>
-				<configuration>
-					<browser>*firefox</browser>
-					<suite>src/test/selenium/SimpleSTestSuite.html</suite>
-					<startURL>http://${cargo.host}:${cargo.port}</startURL>
-				</configuration>
-				-->
-			<!--
-				<executions>
-					<execution>
-						<id>xvfb</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>xvfb</goal>
-						</goals>
-						<configuration>
-							<display>:99</display>
-						</configuration>
-					</execution>
-
-					<execution>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start-server</goal>
-						</goals>
-						<configuration>
-							<background>true</background>
-						</configuration>
-					</execution>
-					<execution>
-						<id>run-selenium-tests</id>
-						<phase>integration-test</phase>
-						<goals>
-							<goal>selenese</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>stop-selenium</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop-server</goal>
-						</goals>
-					</execution>
-
-				</executions>
-			-->
-			<!--
-			</plugin>
-			-->
-			<!--
-			<plugin>
-				<groupId>org.codehaus.gmaven</groupId>
-				<artifactId>gmaven-plugin</artifactId>
-				<extensions>true</extensions>
-				<executions>
-					<execution>
-						<goals>
-							<goal>testCompile</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<fileset>
-									<directory>${basedir}/src/test/groovy</directory>
-									<includes>
-										<include>**/*.groovy</include>
-									</includes>
-								</fileset>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven.surefire.plugin.version}</version>
-				<configuration>
-					<skipTests>${maven.test.skip}</skipTests>
-					<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
-					<testSourceDirectory>${basedir}/src/test/groovy</testSourceDirectory>
-					<excludes>
-						<exclude>**/*ITest*</exclude>
-						<exclude>**/*STest*</exclude>
-					</excludes>
-					<systemPropertyVariables>
-						<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-						<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
-						<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
-        			</systemPropertyVariables>
-				</configuration>
-
-			</plugin>
-			-->
-
-			<!--
-<plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-dependency-plugin</artifactId>
-  <executions>
-    <execution>
-      <id>unpack</id>
-      <phase>pre-integration-test</phase>
-      <goals>
-        <goal>unpack</goal>
-      </goals>
-      <configuration>
-        <artifactItems>
-          <artifactItem>
-            <groupId>org.jboss.as</groupId>
-            <artifactId>jboss-as-dist</artifactId>
-            <version>${jboss.version}</version>
-            <type>zip</type>
-            <overWrite>false</overWrite>
-            <outputDirectory>${project.build.directory}</outputDirectory>
-          </artifactItem>
-        </artifactItems>
-      </configuration>
-    </execution>
-  </executions>
-</plugin>
--->
 			<!-- for automatic running of integration tests with Jetty -->
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
@@ -853,7 +724,6 @@
 					<artifactId>logback-classic</artifactId>
 					<scope>runtime</scope>
 					<exclusions>
-						<!-- circular dependency -->
 						<exclusion>
 							<artifactId>slf4j-api</artifactId>
 							<groupId>org.slf4j</groupId>
@@ -880,7 +750,6 @@
 					<artifactId>slf4j-log4j12</artifactId>
 					<scope>runtime</scope>
 					<exclusions>
-						<!-- circular dependency -->
 						<exclusion>
 							<artifactId>slf4j-api</artifactId>
 							<groupId>org.slf4j</groupId>

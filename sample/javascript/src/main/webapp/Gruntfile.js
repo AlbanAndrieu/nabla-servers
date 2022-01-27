@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
@@ -99,7 +99,7 @@ module.exports = function (grunt) {
           port: 1337,
           hostname: 'localhost',
           livereload: 35729,
-          middleware: function (connect, options) {
+          middleware: function(connect, options) {
             return [
               // Rewrite requests to root so they may be handled by router
               pushState(),
@@ -211,7 +211,7 @@ module.exports = function (grunt) {
 
 grunt.registerTask('img', ['glue']);
 
-grunt.registerTask('default', function () {
+grunt.registerTask('default', function() {
   grunt.task.run([
     'mkdir',
     'bower:install',
@@ -226,7 +226,7 @@ grunt.registerTask('default', function () {
     ]);
 });
 
-grunt.registerTask('serve', function () {
+grunt.registerTask('serve', function() {
   grunt.task.run([
     'mkdir',
     'bower:install',

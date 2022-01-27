@@ -155,29 +155,29 @@
 						</configuration>
 					</configuration>
 					<!--
-                                        <executions>
-                                                <execution>
-                                                  <id>start</id>
-                                                  <phase>pre-integration-test</phase>
-                                                  <goals>
-                                                        <goal>start</goal>
-                                                  </goals>
-                                                  <configuration>
-                                                        <timeout>240000</timeout>
-                                                  </configuration>
-                                                </execution>
-                                                <execution>
-                                                  <id>stop</id>
-                                                  <phase>post-integration-test</phase>
-                                                  <goals>
-                                                        <goal>stop</goal>
-                                                  </goals>
-                                                  <configuration>
-                                                        <timeout>60000</timeout>
-                                                  </configuration>
-                                                </execution>
-                                        </executions>
-                                        -->
+          <executions>
+                  <execution>
+                    <id>start</id>
+                    <phase>pre-integration-test</phase>
+                    <goals>
+                          <goal>start</goal>
+                    </goals>
+                    <configuration>
+                          <timeout>240000</timeout>
+                    </configuration>
+                  </execution>
+                  <execution>
+                    <id>stop</id>
+                    <phase>post-integration-test</phase>
+                    <goals>
+                          <goal>stop</goal>
+                    </goals>
+                    <configuration>
+                          <timeout>60000</timeout>
+                    </configuration>
+                  </execution>
+          </executions>
+          -->
 				</plugin>
 				<!-- end Web application server helpers -->
 			</plugins>
@@ -543,50 +543,50 @@
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<!--
-                                                <executions>
-                                                        <execution>
-                                                                <id>start-container</id>
-                                                                <phase>pre-integration-test</phase>
-                                                                <goals>
-                                                                        <goal>start</goal>
-                                                                        <goal>deployer-deploy</goal>
-                                                                </goals>
-                                                        </execution>
-                                                        <execution>
-                                                                <id>stop-container</id>
-                                                                <phase>post-integration-test</phase>
-                                                                <goals>
-                                                                        <goal>deployer-undeploy</goal>
-                                                                        <goal>stop</goal>
-                                                                </goals>
-                                                        </execution>
-                                                        -->
+            <executions>
+                    <execution>
+                            <id>start-container</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                    <goal>start</goal>
+                                    <goal>deployer-deploy</goal>
+                            </goals>
+                    </execution>
+                    <execution>
+                            <id>stop-container</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                    <goal>deployer-undeploy</goal>
+                                    <goal>stop</goal>
+                            </goals>
+                    </execution>
+                    -->
 						<!--
-                                                        <execution>
-                                                                <id>clean-undeploy</id>
-                                                                <phase>pre-clean</phase>
-                                                                <goals>
-                                                                        <goal>deployer-undeploy</goal>
-                                                                </goals>
-                                                        </execution>
-                                                        <execution>
-                                                                <id>deploy</id>
-                                                                <phase>pre-integration-test</phase>
-                                                                <goals>
-                                                                        <goal>deployer-redeploy</goal>
-                                                                </goals>
-                                                        </execution>
-                                                        <execution>
-                                                                <id>verify-deploy</id>
-                                                                <phase>install</phase>
-                                                                <goals>
-                                                                        <goal>deployer-deploy</goal>
-                                                                </goals>
-                                                        </execution>
-                                                        -->
+              <execution>
+                      <id>clean-undeploy</id>
+                      <phase>pre-clean</phase>
+                      <goals>
+                              <goal>deployer-undeploy</goal>
+                      </goals>
+              </execution>
+              <execution>
+                      <id>deploy</id>
+                      <phase>pre-integration-test</phase>
+                      <goals>
+                              <goal>deployer-redeploy</goal>
+                      </goals>
+              </execution>
+              <execution>
+                      <id>verify-deploy</id>
+                      <phase>install</phase>
+                      <goals>
+                              <goal>deployer-deploy</goal>
+                      </goals>
+              </execution>
+              -->
 						<!--
-                                                </executions>
-                                                -->
+            </executions>
+            -->
 						<dependencies>
 							<dependency>
 								<groupId>org.jboss.as</groupId>
@@ -712,13 +712,9 @@
 		<profile>
 			<id>jboss5x</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
 				<property>
-					<!--
-                                        <name>server</name>
-                                        <value>jboss5x</value>
-                                        -->
-					<name>!server</name>
+					<name>server</name>
+					<value>jboss5x</value>
 				</property>
 			</activation>
 			<build>
@@ -828,23 +824,23 @@
 							</container>
 						</configuration>
 						<!--
-                                                <executions>
-                                                        <execution>
-                                                                <id>start-container</id>
-                                                                <phase>pre-integration-test</phase>
-                                                                <goals>
-                                                                        <goal>start</goal>
-                                                                </goals>
-                                                        </execution>
-                                                        <execution>
-                                                                <id>stop-container</id>
-                                                                <phase>post-integration-test</phase>
-                                                                <goals>
-                                                                        <goal>stop</goal>
-                                                                </goals>
-                                                        </execution>
-                                                </executions>
-                                                -->
+            <executions>
+                    <execution>
+                            <id>start-container</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                    <goal>start</goal>
+                            </goals>
+                    </execution>
+                    <execution>
+                            <id>stop-container</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                    <goal>stop</goal>
+                            </goals>
+                    </execution>
+            </executions>
+            -->
 					</plugin>
 				</plugins>
 			</build>
@@ -898,23 +894,23 @@
 							</container>
 						</configuration>
 						<!--
-                                                <executions>
-                                                        <execution>
-                                                                <id>start-container</id>
-                                                                <phase>pre-integration-test</phase>
-                                                                <goals>
-                                                                        <goal>start</goal>
-                                                                </goals>
-                                                        </execution>
-                                                        <execution>
-                                                                <id>stop-container</id>
-                                                                <phase>post-integration-test</phase>
-                                                                <goals>
-                                                                        <goal>stop</goal>
-                                                                </goals>
-                                                        </execution>
-                                                </executions>
-                                                -->
+            <executions>
+                    <execution>
+                            <id>start-container</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                    <goal>start</goal>
+                            </goals>
+                    </execution>
+                    <execution>
+                            <id>stop-container</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                    <goal>stop</goal>
+                            </goals>
+                    </execution>
+            </executions>
+            -->
 					</plugin>
 				</plugins>
 			</build>
@@ -970,23 +966,23 @@
 							</container>
 						</configuration>
 						<!--
-                                                <executions>
-                                                        <execution>
-                                                                <id>start-container</id>
-                                                                <phase>pre-integration-test</phase>
-                                                                <goals>
-                                                                        <goal>start</goal>
-                                                                </goals>
-                                                        </execution>
-                                                        <execution>
-                                                                <id>stop-container</id>
-                                                                <phase>post-integration-test</phase>
-                                                                <goals>
-                                                                        <goal>stop</goal>
-                                                                </goals>
-                                                        </execution>
-                                                </executions>
-                                                -->
+            <executions>
+                    <execution>
+                            <id>start-container</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                    <goal>start</goal>
+                            </goals>
+                    </execution>
+                    <execution>
+                            <id>stop-container</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                    <goal>stop</goal>
+                            </goals>
+                    </execution>
+            </executions>
+            -->
 					</plugin>
 				</plugins>
 			</build>
@@ -1016,9 +1012,13 @@
 		<profile>
 			<id>jetty9x</id>
 			<activation>
+				<activeByDefault>true</activeByDefault>
 				<property>
+					<!--
 					<name>server</name>
 					<value>jetty9x</value>
+          -->
+					<name>!server</name>
 				</property>
 			</activation>
 			<build>
@@ -1044,28 +1044,28 @@
 							</container>
 						</configuration>
 						<!--
-                                                <executions>
-                                                        <execution>
-                                                                <id>start-container</id>
-                                                                <phase>pre-integration-test</phase>
-                                                                <goals>
-                                                                        <goal>start</goal>
-                                                                </goals>
-                                                                <configuration>
-                                                                        <properties>
-                                                                          <cargo.jvmargs>${jacoco.agent.it.arg}</cargo.jvmargs>
-                                                                        </properties>
-                                                                </configuration>
-                                                        </execution>
-                                                        <execution>
-                                                                <id>stop-container</id>
-                                                                <phase>post-integration-test</phase>
-                                                                <goals>
-                                                                        <goal>stop</goal>
-                                                                </goals>
-                                                        </execution>
-                                                </executions>
-                                                -->
+            <executions>
+                    <execution>
+                            <id>start-container</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                    <goal>start</goal>
+                            </goals>
+                            <configuration>
+                                    <properties>
+                                      <cargo.jvmargs>${jacoco.agent.it.arg}</cargo.jvmargs>
+                                    </properties>
+                            </configuration>
+                    </execution>
+                    <execution>
+                            <id>stop-container</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                    <goal>stop</goal>
+                            </goals>
+                    </execution>
+            </executions>
+            -->
 					</plugin>
 				</plugins>
 			</build>
@@ -1716,14 +1716,14 @@
 			</build>
 			<dependencies>
 				<!--
-                                <dependency>
-                                        <groupId>org.jboss.bom</groupId>
-                                        <artifactId>jboss-javaee-6.0-with-tools</artifactId>
-                                        <version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
-                                        <type>pom</type>
-                                        <scope>provided</scope>
-                                </dependency>
-                                -->
+        <dependency>
+                <groupId>org.jboss.bom</groupId>
+                <artifactId>jboss-javaee-6.0-with-tools</artifactId>
+                <version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
+                <type>pom</type>
+                <scope>provided</scope>
+        </dependency>
+        -->
 				<dependency>
 					<groupId>org.jboss.spec</groupId>
 					<artifactId>jboss-javaee-6.0</artifactId>
@@ -1744,31 +1744,23 @@
 					<version>${org.jboss.weld.core.version}</version>
 					<scope>test</scope>
 				</dependency>
-				<!--
-                                <dependency>
-                                        <groupId>org.slf4j</groupId>
-                                        <artifactId>slf4j-log4j12</artifactId>
-                                        <version>${slf4j.version}</version>
-                                        <scope>test</scope>
-                                </dependency>
-                                -->
 			</dependencies>
 		</profile>
 
 		<!-- Run with: mvn clean test -Parq-jbossas-embedded -->
 		<!-- does not work
-                <profile>
-                        <id>arq-jbossas-embedded</id>
-                        <dependencies>
-                                <dependency>
-                                        <groupId>org.jboss.as</groupId>
-                                        <artifactId>jboss-as-arquillian-container-embedded</artifactId>
-                                        <version>7.0.0.Beta3</version>
-                                        <scope>test</scope>
-                                </dependency>
-                        </dependencies>
-                </profile>
-                -->
+    <profile>
+          <id>arq-jbossas-embedded</id>
+          <dependencies>
+                  <dependency>
+                          <groupId>org.jboss.as</groupId>
+                          <artifactId>jboss-as-arquillian-container-embedded</artifactId>
+                          <version>7.0.0.Beta3</version>
+                          <scope>test</scope>
+                  </dependency>
+          </dependencies>
+    </profile>
+    -->
 
 		<profile>
 			<!-- We add the JBoss repository as we need the JBoss AS connectors for
@@ -1783,21 +1775,21 @@
 				<property>
 					<name>!profile.activation</name>
 					<!--
-		                        <name>arquillian</name>
-		                        <value>arq-jbossas-managed</value>
-		                        -->
+          <name>arquillian</name>
+          <value>arq-jbossas-managed</value>
+          -->
 				</property>
 			</activation>
 			<dependencies>
 				<!--
-                                <dependency>
-                                        <groupId>org.jboss.bom</groupId>
-                                        <artifactId>jboss-javaee-6.0-with-tools</artifactId>
-                                        <version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
-                                        <type>pom</type>
-                                        <scope>provided</scope>
-                                </dependency>
-                                -->
+        <dependency>
+                <groupId>org.jboss.bom</groupId>
+                <artifactId>jboss-javaee-6.0-with-tools</artifactId>
+                <version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
+                <type>pom</type>
+                <scope>provided</scope>
+        </dependency>
+        -->
 				<dependency>
 					<groupId>org.jboss.spec</groupId>
 					<artifactId>jboss-javaee-6.0</artifactId>
@@ -1808,24 +1800,24 @@
 				</dependency>
 
 				<!--
-                                <dependency>
-                                  <groupId>org.jboss.arquillian</groupId>
-                                  <artifactId>arquillian-bom</artifactId>
-                                  <version>${org.jboss.arquillian.bom.version}</version>
-                                  <type>pom</type>
-                                  <scope>import</scope>
-                                </dependency>
-                                -->
+        <dependency>
+          <groupId>org.jboss.arquillian</groupId>
+          <artifactId>arquillian-bom</artifactId>
+          <version>${org.jboss.arquillian.bom.version}</version>
+          <type>pom</type>
+          <scope>import</scope>
+        </dependency>
+        -->
 
 				<!-- Optional, but highly recommended -->
 				<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) JPA from JUnit/TestNG -->
 				<!--
-                                <dependency>
-                                        <groupId>org.jboss.arquillian.junit</groupId>
-                                        <artifactId>arquillian-junit-container</artifactId>
-                                        <scope>test</scope>
-                                </dependency>
-                                -->
+        <dependency>
+                <groupId>org.jboss.arquillian.junit</groupId>
+                <artifactId>arquillian-junit-container</artifactId>
+                <scope>test</scope>
+        </dependency>
+        -->
 
 				<dependency>
 					<groupId>org.jboss.as</groupId>
@@ -1842,10 +1834,8 @@
 		</profile>
 
 		<profile>
-			<!-- We add the JBoss repository as we need the JBoss AS connectors for
-                                Arquillian -->
-			<!-- An optional Arquillian testing profile that executes tests in a remote
-                                JBoss AS instance -->
+			<!-- We add the JBoss repository as we need the JBoss AS connectors for Arquillian -->
+			<!-- An optional Arquillian testing profile that executes tests in a remote JBoss AS instance -->
 			<!-- Run with: mvn clean test -Parq-jbossas-remote -->
 			<id>arq-jbossas-remote</id>
 			<activation>
@@ -1862,10 +1852,10 @@
 						<version>${maven.surefire.plugin.version}</version>
 						<configuration>
 							<!-- avoid downloading jboss
-                                                        <environmentVariables>
-                                                                <JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
-                                                        </environmentVariables>
-                                                        -->
+              <environmentVariables>
+                      <JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
+              </environmentVariables>
+              -->
 							<systemProperties>
 								<jboss.version>${server.version}</jboss.version>
 							</systemProperties>
@@ -1954,13 +1944,6 @@
 		</profile>
 
 		<profile>
-			<!-- When built in OpenShift the 'openshift' profile will be used when
-                                invoking mvn. -->
-			<!-- Use this profile for any OpenShift specific customization your app
-                                will need. -->
-			<!-- By default that is to put the resulting archive into the 'deployments'
-                                folder. -->
-			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 			<id>openshift</id>
 			<build>
 				<plugins>
@@ -1987,18 +1970,6 @@
 					<value>arq-jetty-embedded</value>
 				</property>
 			</activation>
-			<!--
-                         <build>
-                                <testResources>
-                                   <testResource>
-                                          <directory>src/test/resources</directory>
-                                   </testResource>
-                                   <testResource>
-                                          <directory>src/test/resources-jetty</directory>
-                                   </testResource>
-                                </testResources>
-                         </build>
-                         -->
 			<build>
 				<plugins>
 					<plugin>
@@ -2042,19 +2013,19 @@
 				</dependency>
 				<!-- TODO create a profile for the two JSF impls -->
 				<!--
-                                <dependency>
-                                   <groupId>org.apache.myfaces.core</groupId>
-                                   <artifactId>myfaces-impl</artifactId>
-                                   <version>2.0.2</version>
-                                   <scope>test</scope>
-                                </dependency>
-                                <dependency>
-                                   <groupId>org.apache.myfaces.core</groupId>
-                                   <artifactId>myfaces-api</artifactId>
-                                   <version>2.0.2</version>
-                                   <scope>test</scope>
-                                </dependency>
-                                -->
+        <dependency>
+           <groupId>org.apache.myfaces.core</groupId>
+           <artifactId>myfaces-impl</artifactId>
+           <version>2.0.2</version>
+           <scope>test</scope>
+        </dependency>
+        <dependency>
+           <groupId>org.apache.myfaces.core</groupId>
+           <artifactId>myfaces-api</artifactId>
+           <version>2.0.2</version>
+           <scope>test</scope>
+        </dependency>
+        -->
 				<!-- Weld servlet, EL and JSP required for testing CDI injections -->
 				<dependency>
 					<groupId>org.jboss.weld.servlet</groupId>
@@ -2062,20 +2033,11 @@
 					<version>${weld.servlet.version}</version>
 					<scope>test</scope>
 				</dependency>
-
-				<!--
-               <dependency>
-                    <groupId>org.jboss.spec.javax.servlet.jsp</groupId>
-                    <artifactId>jboss-jsp-api_2.2_spec</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                -->
-
 				<dependency>
 					<groupId>com.sun.faces</groupId>
 					<artifactId>jsf-impl</artifactId>
 					<version>${sun.jsf.version}</version>
-					<!--2.0.3-->
+					<!-- 2.0.3 -->
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -2086,19 +2048,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-		<!-- TODO tomcatee
-                  <profile>
-                         <id>arq-tomcat-embedded</id>
-                         <dependencies>
-                                <dependency>
-                                   <groupId>org.apache.openejb</groupId>
-                                   <artifactId>arquillian-tomee-embedded</artifactId>
-                                   <version>${org.openejb.arquillian.tomee.embedded.version}</version>
-                                   <scope>test</scope>
-                                </dependency>
-                         </dependencies>
-                  </profile>
-                  -->
 		<profile>
 			<id>arq-tomcat-embedded</id>
 			<dependencies>
@@ -2141,23 +2090,23 @@
 				</dependency>
 			</dependencies>
 			<!--
-                         <build>
-                                <testResources>
-                                   <testResource>
-                                          <directory>src/test/resources</directory>
-                                   </testResource>
-                                   <testResource>
-                                          <directory>src/test/resources-tomcat</directory>
-                                   </testResource>
-                                </testResources>
-                         </build>
-                         -->
+     <build>
+            <testResources>
+               <testResource>
+                      <directory>src/test/resources</directory>
+               </testResource>
+               <testResource>
+                      <directory>src/test/resources-tomcat</directory>
+               </testResource>
+            </testResources>
+     </build>
+     -->
 		</profile>
 		<profile>
 			<!--
-                         This profile will copy all the test dependencies to target/test-libs to help
-                         those not using Maven understand what dependencies they need on the classpath
-                         -->
+     This profile will copy all the test dependencies to target/test-libs to help
+     those not using Maven understand what dependencies they need on the classpath
+     -->
 			<id>copy-test-libs</id>
 			<build>
 				<plugins>

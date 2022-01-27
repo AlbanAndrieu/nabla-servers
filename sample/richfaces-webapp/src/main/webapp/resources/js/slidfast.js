@@ -76,10 +76,10 @@
 
             hideURLBar: function() {
                 //hide the url bar on mobile devices
-                setTimeout(scrollTo, 100, 0, 1)
+                setTimeout(scrollTo, 100, 0, 1);
             },
 
-            slideTo :   function (id) {
+            slideTo :   function(id) {
                 if(!focusPage) {
                     focusPage = document.getElementById(defaultPageID);
                 }

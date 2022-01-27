@@ -48,7 +48,7 @@ describe('PhoneCat controllers', function() {
           return {
             name: 'phone xyz',
                 images: ['image/url1.png', 'image/url2.png']
-          }
+          };
         };
 
 

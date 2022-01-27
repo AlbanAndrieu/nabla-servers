@@ -9,7 +9,7 @@
 
 var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
 
@@ -98,7 +98,7 @@ module.exports = function (grunt) {
             '.tmp',
             'app'
           ],
-          middleware: function (connect) {
+          middleware: function(connect) {
             return [
               proxySnippet,
               connect.static(require('path').resolve('app'))
@@ -337,7 +337,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('server', function (target) {
+  grunt.registerTask('server', function(target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }

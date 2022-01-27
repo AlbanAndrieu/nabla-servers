@@ -13,16 +13,16 @@ var agent = httpAgent.create('www.google.com', ['/phone/']);
 var baseDir = __dirname + '/../app/phones/';
 var phones = [];
 
-function boolean (text) {
+function boolean(text) {
   return /true/i.test(text);
 }
 
-agent.addListener('next', function (error, agent) {
+agent.addListener('next', function(error, agent) {
   var htmlPage = agent.body.replace('</head>', '</head><body>').
                             replace(/<script[\s\S]*?<\/script>/gi, '');
 //  console.log(htmlPage);
   var window = jsdom.jsdom(htmlPage).createWindow();
-  jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.4.2.min.js', function (window, jquery) {
+  jsdom.jQueryify(window, 'http://code.jquery.com/jquery-1.4.2.min.js', function(window, jquery) {
     var body = jquery('body');
     if (phones.length) {
       var c1 = body.find('.g-section .g-unit:nth-child(1)');
@@ -108,7 +108,7 @@ agent.addListener('next', function (error, agent) {
   });
 });
 
-agent.addListener('stop', function (error, agent) {
+agent.addListener('stop', function(error, agent) {
   sys.puts('the agent has stopped');
 });
 
